@@ -1,0 +1,28 @@
+3 Infrastructure Surplus Allocation Protocol (ISAP)
+
+3.1 Amendment rules: 
+    Locked. Requires 90% supermajority to amend, or 100% unanimous vote if touching exclusion rules.
+
+3.2 Purpose: 
+    Surplus funds shall be deployed exclusively to infrastructure projects—electrical grids, research facilities, schools, water systems, etc.—where need is objectively verifiable using public, third-party datasets (e.g., World Bank, UN, USAID reports, local government statistics).
+
+3.3 Reproducible Need:
+    Defined as projects ranking in the top 25% of the selected metric (e.g., outages, dropout rates, equipment age) from the public dataset.
+    Metrics may be adjusted only by board with public justification and full audit trail.
+    Geographic Exclusion Rules (immutable without 100% unanimous vote + external auditor sign-off):
+    No projects in regions with U.S. State Department Level 3 (“Reconsider Travel”) or Level 4 (“Do Not Travel”) advisories at the time of allocation.
+    No projects in active war zones, conflict areas, or regions under UN sanctions.
+    Exclusion list published monthly on public GitHub ledger.
+
+3.4 Project Rules (non-negotiable):
+    Funds cover only direct work: materials, labor, contractors.
+    Independent verification required by a third-party inspector (local NGO, university, or engineering firm).
+    Organization executing the project exits immediately after verification—no ongoing management or ownership rights.
+    Maximum project size: 10% of annual surplus.
+
+3.5 Transparency & Accountability:
+    All project details, budgets, metrics, and verification reports hashed and published to the public GitHub within 30 days of completion.
+    Annual external audit mandatory.
+
+Version 0.01a
+2/23/2026
