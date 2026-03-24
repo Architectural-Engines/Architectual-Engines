@@ -1,0 +1,292 @@
+# Anneal Logs (Preface)
+*Logs contain snippets up until the point of the Organization's GitHub creation.*
+
+---
+
+## December 2025
+
+### 12/18/2025 — Equation Discovery (pre-Anneal)
+- Equation found.
+
+### 12/18/2025 — Initial Codification
+- Codified equation.
+- With minimal synthetic data, the equation produced interesting outputs.
+
+---
+
+### 12/19/2025 — First Outputs Observed
+**Observation:**
+- Trajectory appears as a flat, accretion-disk-like pattern in the x–y plane with slight twisting.
+- When synthetic data was applied, the output resembled a cone.
+- Trajectories appeared helical in nature. *(Something felt overlooked.)*
+
+**Conceptualization at the time:**
+- Resembles flattened matter accretion / disk formation.
+- Also shows characteristics of helical structures.
+
+---
+
+### 12/21/2025 — CSV Parsing Introduced
+- Added parsing from CSV data.
+- Gathered reliable open-source CSV data (most high-quality data was behind paywalls or unavailable).
+
+---
+
+### 12/23/2025 — Handling Messy Data
+**Additions:**
+- Improved parsing for malformed / inconsistent CSV data.
+
+**Observation:**
+- Most reliable accessible dataset: Starlink CSV data (not pre-separated).
+
+**Trajectory types explored:**
+- Ares X-1 rockets  
+- Starlink satellites  
+- ISS  
+
+**Question:**
+- If the model can produce reliable trajectories from a single data point, what prevents it from treating a Starlink payload vessel as just another `P_d`?  
+→ Direction began to shift.
+
+---
+
+### 12/24/2025 — Data Structuring
+- Added proper CSV column separation and data extraction.
+
+---
+
+### 12/25/2025 – 01/01/2026
+- Holiday break (no work).
+
+---
+
+## January 2026
+
+### 01/02/2026 — Core Model Implementation
+- Implemented core math into model (`prop5ktraj`).
+- Trajectories generated from manually input data.
+
+**Debug:**
+- Tensor mismatches (mat1 & mat2)
+- Missing / improper calls
+- Overwrites and return issues
+
+---
+
+### 01/03/2026 – 01/04/2026
+- Continued debugging (tensors, calls, overwrites).
+- Visualization updates.
+- Removed orphaned / broken code.
+
+---
+
+### 01/05/2026 – 01/10/2026
+- Break (no work).
+
+---
+
+### 01/11/2026 — Tuning Begins
+**Observation:**
+- Outputs were scattered but collapsed toward the center (see initial seeds).
+- The model was not falling into noise.
+- The equation acted as a **core attractor**, mimicking collapse into a central point.  
+*(Something felt overlooked.)*
+
+---
+
+### 01/12/2026 — Visualization Improvements
+- Thinner lines, adjusted opacity.
+- Expanded graph space for clearer interpretation.
+
+---
+
+### 01/13/2026 — Tuning Progression
+- Model scaled from 5k → 11k parameters.
+- Began converging toward real trajectories.
+- Trajectories appeared zigzagged.
+
+**Realization:**
+- Excess data points in a small graph caused sharp zigzags (actual + predicted).
+- Reduced points: 150 → 20 for smoother trajectories.
+
+---
+
+### 01/14/2026 – 01/15/2026 — Tuning + Synthetic Expansion
+- Ongoing CSV parsing issues.
+- Implemented synthetic trajectory generator.
+
+**New motion types:**
+- Linear  
+- Circular  
+- Oscillatory  
+- Random walk  
+
+---
+
+### 01/16/2026 — System Expansion
+- Model renamed: `Synth Traj v1`
+- Visualization expanded:
+  - Mean uncertainty  
+  - Max uncertainty  
+  - Loss  
+  - Outliers  
+  - Thresholds  
+- Opacity tied to high-uncertainty points.
+
+**Debug:**
+- Tensor issues
+
+---
+
+### 01/17/2026 — First Major Breakthrough
+
+**Performance:**
+- Linear:
+  - Loss: 0.0002  
+  - Mean uncertainty: 0.0020  
+  - Max: 0.0031  
+
+- Oscillatory:
+  - Loss: 0.0013  
+  - Mean: 0.0190  
+  - Max: 0.0270  
+
+- Circular:
+  - Loss: 0.0011  
+  - Mean: 0.2696  
+  - Max: 0.377  
+
+**Key Observation:**
+- Trajectories matched perfectly but were offset by ~5°.
+
+**Insight:**
+- Determine degrees of freedom by pushing limits.
+- Explore how and where the model breaks.
+
+---
+
+### 01/18/2026 — Anneal Naming + Parameter Interactions
+- Model renamed: **ANNEAL**
+
+**Parameter Relationships (BLOAT phase):**
+- **Epsilon:**
+  - Controls tilt/yaw
+  - High loss, low uncertainty
+  - Alters initial z-position
+
+- **Noise:**
+  - Forces reliance on core equation
+  - Explains failure of random walk
+
+- **Branches / Hidden:**
+  - Must remain equal
+  - Imbalance introduces directional bias
+
+- **Time Feature:**
+  - Alters step persistence
+  - Produces jagged trajectories with low uncertainty
+
+- **Dimensions:**
+  - Best results near base (3D) reality
+
+**Observations:**
+- Parameter relationships aligned with Fibonacci-like scaling *(something missing)*  
+- Model overcorrects without parameter balance  
+- 14 failure points identified (bifurcation points)
+  → Model defaults to trusting equation over data
+
+**Conceptual Shift:**
+- Investigated whether noise accumulates across steps
+
+---
+
+### 01/20/2026
+- Conceptualized N-body extension  
+- Built initial code, set aside *(too early)*
+
+---
+
+### 01/21/2026 — Random Walk Focus
+- Attempted fixes:
+  - Universal smoothing  
+  - Noise floor  
+  - Epsilon dampening  
+
+→ Failed
+
+---
+
+### 01/22/2026 — Structural Fixes
+- Resolved motion type / latent_real conflict
+- Fixed missing returns, duplication, orphaned code
+
+---
+
+### 01/23/2026 — Architecture Debugging
+- Tensor issues from major architectural changes
+- Projection errors (mat1/mat2)
+- Residual syntax issues
+
+---
+
+### 01/24/2026 — Forward Pass Optimization
+- Reduced forward pass to ~30 lines
+- Moved non-essential logic out
+
+---
+
+### 01/25/2026
+- Modified forward pass
+- Debugged resulting issues
+
+---
+
+### 01/26/2026 — Anchoring Behavior
+- Anchored trajectory to initial `P_d`
+
+**Observation:**
+- Drift at:
+  - Initial point  
+  - Second step  
+  - Final point  
+  - Pre-final step  
+
+**Question:**
+- Is this energy non-conservation or accumulated noise from bloat?
+
+---
+
+### 01/27/2026 — Stability Patterns
+- Model peaked at ~260k parameters
+
+**Observation:**
+- System oscillates between:
+  - Stable trajectories  
+  - Collapsed states  
+
+→ Multiple stability points exist depending on configuration
+
+---
+
+### 01/28/2026 — Pruning Phase
+- Reduced parameters to find lowest stable basin
+
+---
+
+### 01/29/2026 — Stability Mapping
+
+**Stability Range 1(multiple points):**
+- Between:
+  - (1024 branches / 512 dims)  
+  - (512 branches / 256 dims)
+
+**Stability Range 2(multiple points:**
+- Between:
+  - (512 branches / 256 dims)  
+  - (1 branch / 1 dim)
+
+*Note: Additional ranges possible (time features not fully explored)*
+
+---
+
+### 01/30/2026 — ANNEAL V2 Conceptualized
