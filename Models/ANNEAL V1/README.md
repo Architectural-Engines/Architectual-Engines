@@ -1,51 +1,41 @@
-Anneal-V1
+***Anneal V1*** — Post Divergence Trajectory System
 
-Post Divergence Trajectory Synthesis Model: 1
+Minimal forward-defined system for exploring trajectory formation, stability, and divergence.
 
-A lightweight probabilistic trajectory model. Tracks low entropy motion paths through synthetic environments.
+**Overview**:
 
-Main:
+Anneal V1 is a lightweight dynamical model that propagates trajectories through a structured latent space.
+Rather than relying on training or attention mechanisms, the system uses a core equation to guide motion, allowing stable paths and divergence patterns to emerge naturally.
 
-Minimal neural skeleton capable of representing complex trajectory divergence using branch based latent representations. Designed for research, experimentation, and forward exploration.
+***Core Behavior***:
+  **Attractor-driven motion**
+  A central equation acts as an attractor, pulling trajectories toward structured, low-entropy paths.
 
-Features:
+  **Branch-based latent structure**
+  Multiple branches represent competing trajectory paths, enabling controlled divergence and convergence.
+  Stability and bifurcation
+  The system exhibits multiple stable states depending on parameter balance.
+  Misalignment between components can cause collapse, drift, or overcorrection.
+  
+  **Noise interaction**
+  Noise does not simply randomize outputs — it shifts how strongly the system relies on the underlying equation.
+  **Forward-only dynamics**
+  No training loop. Behavior emerges entirely from the forward pass and parameter relationships.
+  **Observed Properties**
+  Convergence to smooth trajectories across motion types (linear, oscillatory, circular)
+  Consistent structural offsets under certain parameter regimes
+  Multiple basins of stability depending on architecture scale
+  Identifiable failure points where the system defaults to the core equation
+  **Design Principles**
+  Minimal architecture
+  Low imposed bias
+  Emphasis on emergence over prescription
+  Exploration of motion as a system, not a task
+  ***Notes***
+  This version represents pre-symbolic exploration
+  Behavior is highly sensitive to parameter balance
+  Designed for experimentation, not production use
 
-Ultra-lightweight:
-suitable for low resource, rapid iteration. 
-
-Branching superposition:
-Multi branch latent trajectories allow modeling divergence and uncertainty without large attention mechanisms.
-
-Low human bias:
-Focused on probabilistic motion rather than human language or task specific outputs.
-
-Residual consistency:
-residual layers ensure stable propagation of latent states.
-
-Complexified latent representation Real + imaginary components allow uncertainty tracking and low-entropy pathing.
-
-Time embeddings:
-Fourier features + linear projections encode continuous-time dynamics.
-
-visualization:
-Readout to 3D space Converts latent trajectories into observable 3D positions.
-
-Installation (Windows + AMD GPU via ZLUDA)
-
-Install Python >=3.10
-
-Install PyTorch (CPU or CUDA via ZLUDA)
-
-Bash pip install torch torchvision (amd) Add ZLUDA DLLs to your system PATH
-
-Notes
-
-•The model is a skeleton, zero training.
-
-•Forward pass demonstrates latent motion propagation.
-
-•Suitable for small synthetic datasets or experimental trajectory inputs.
-
-•Designed to allow exploration of low-entropy trajectories without attention layers or human bias.
-
-CC0 / Public Domain — free to experiment, fork, and extend.
+  
+  License
+  CC0 / Public Domain
