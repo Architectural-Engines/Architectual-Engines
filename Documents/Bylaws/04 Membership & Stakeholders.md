@@ -1,6 +1,6 @@
-4 Membership & Stakeholders
+***4 Membership & Stakeholders***
 
-4.1 Types of Stakeholders (no formal “members”)
+4.1 **Types of Stakeholders (no formal “members”)**
     4.1a Architectural Engines has no formal membership structure. Stakeholders are defined as follows:
         Board of Directors (3–7 individuals, self-perpetuating)
         Responsible for mission fidelity, fund allocation, and major decisions.
@@ -16,7 +16,7 @@
         Founder Steward / Advisor (special Advisory Council position)
         Reserved exclusively for the original founder once stepping down from the Board of Directors.
 
-4.2 Role & Powers:
+4.2 **Role & Powers**:
         Non-voting, but provides mandatory advisory input on all governance or mission-critical decisions.
         Can propose agenda items and review amendments affecting mission, bylaws, or surplus allocation.
         Must be consulted on changes impacting founder-defined clauses.
@@ -34,8 +34,8 @@
         No formal rights or voting power.
         Recognized publicly (GitHub credits, acknowledgments).
 
-4.4 Rights & Responsibilities
-        Board of Directors
+4.4 **Rights & Responsibilities**
+        **Board of Directors**
     4.4a Rights:
          Vote on all governance, budget, and mission decisions. 90% supermajority required for changes to bylaws, mission, or surplus allocation.
 
@@ -65,7 +65,7 @@
     4.4i Responsibilities: 
         Follow CC0 license, no claim of ownership or exclusivity.
 
-4.5 Process for Joining, Leaving, or Removal
+4.5 **Process for Joining, Leaving, or Removal**
     4.5a Joining Board:
         Requires 90% supermajority vote of current board.
     4.5b Nominee must submit:
@@ -74,7 +74,7 @@
         Commitment to zero personal benefit from Anneal
         Public announcement on GitHub within 7 days.
 
-4.6 Leaving Board
+4.6 **Leaving Board**
     Voluntary resignation at any time (written notice to board).
     Automatic upon violation of bylaws (e.g., attempting private benefit, breaching confidentiality).
     Removal by 90% supermajority vote (documented rationale, publicly posted on GitHub).
@@ -83,14 +83,17 @@
     Can resign at will.
     Removed by simple majority board vote.
 
-    4.7 Founder Steward / Advisor
-        Cannot be removed except by 100% unanimous board vote + independent external auditor verification.
-        Position is indefinite unless founder voluntarily resigns.
-        NDA / Confidentiality
-        No blanket NDA — all governance is public (GitHub ledger).
-        Limited confidentiality for sensitive personal/financial data (donor info, grant applications in progress).
-        Breach of limited confidentiality = automatic removal + public disclosure.
-4.7 Funding & Surplus (cross-reference)
+4.7 **Founder Steward / Advisor**
+    Cannot be removed except by 100% unanimous board vote + independent external auditor verification.
+    Position is indefinite unless founder voluntarily resigns.
+    NDA / Confidentiality
+    No blanket NDA — all governance is public (GitHub ledger).
+    Limited confidentiality for sensitive personal/financial data (donor info, grant applications in progress).
+    Breach of limited confidentiality = automatic removal + public disclosure.
+4.7 **Funding & Surplus (cross-reference)**
     All surplus after research budget goes 100% to verified humanitarian causes.
     No board member or stakeholder receives more than median wage for facilitation work.
     Founder receives zero compensation beyond travel reimbursement.
+
+***Version .01b***
+***2/24/2026***
