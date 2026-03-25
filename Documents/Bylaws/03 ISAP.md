@@ -24,5 +24,36 @@
     All project details, budgets, metrics, and verification reports hashed and published to the public GitHub within 30 days of completion.
     Annual external audit mandatory.
 
-***Version 0.01b***
-***2/24/2026***
+**3.6 Underrepresented Data & Verification Exceptions**
+
+**Purpose**:
+To enable funding in regions where traditional datasets are incomplete, unreliable, or unavailable, while maintaining verifiability, accountability, and transparency.
+
+**Rules**:
+
+    3.6a Alternative Verification Requirement  
+    In the absence of reliable public datasets, projects must be validated through a minimum of two independent third-party sources     (e.g., local NGOs, universities or research institutions, engineering or infrastructure firms, international aid organizations).
+
+    3.6b On-the-Ground Confirmation  
+    At least one verification source must demonstrate direct local presence or operational experience within the target region.
+
+    3.6c Evidence Standard  
+    Acceptable evidence includes field reports, photographic or video documentation, engineering assessments, and local government or         institutional records (where available).
+
+    3.6d Risk Flagging  
+    All approved projects under this exception must be labeled in the public GitHub ledger as: “Alternative Verification Pathway.”
+
+    3.6e Enhanced Transparency  
+    The following must be publicly documented:
+        - Verification sources  
+        - Rationale for funding decision  
+        - Known data limitations or uncertainties  
+
+    3.6f Post-Completion Verification  
+    Independent verification after project completion is mandatory.
+
+    3.6g Allocation Cap  
+    No more than 12.5% of annual surplus may be allocated under this pathway to limit exposure to elevated verification risk.
+
+***Version 0.01c***
+***2/25/2026***
