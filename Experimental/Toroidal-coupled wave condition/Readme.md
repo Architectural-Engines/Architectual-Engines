@@ -1,7 +1,7 @@
 
 Toroidal-Coupled Wave Condition
 
-This section explores a toroidal-coupled wave condition derived from external sources and iteratively refined through model interaction.
+This section explores a toroidal-coupled wave condition derived from external sources and iteratively refined through model interaction. 
 
 This is not considered a validated physical model, but a structured exploration of balance conditions and emergent behavior.
 
@@ -45,7 +45,10 @@ Potential Applications / Reframing:
 
     - **Topological constraint**: Could represent quantized circulation in a delocalized quantum vortex or topological state on a toroidal domain.
     - **Energy minimization**: May emerge as a condition for stationary states in systems where phase winding balances rotational energy.
+
+        (FAILED)
     - **Anneal connection**: If the torus represents the latent manifold of branches, this constrains how probability flows during collapse → possible origin of toroidal folding when uncertainty spikes.
+        (FAILED)
 
 Open Questions / Pruning Notes:
 
