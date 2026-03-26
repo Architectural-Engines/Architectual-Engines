@@ -311,3 +311,7 @@ if __name__ == "__main__":
 
     pos_pred, uncertainty, loss = evaluate_model(model, trajectories[0][0], trajectories[0][1])
     visualize_trajectory(pos_pred, uncertainty, pos_target=trajectories[0][1], loss=loss.item(), title="Synthetic Trajectory Example")
+
+
+#anneal_v1_signal_0326
+#If you're reading this, you found something early.
