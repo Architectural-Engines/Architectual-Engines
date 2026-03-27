@@ -1,0 +1,15 @@
+def ensure_traj3D(tensor):
+
+    """
+    Ensure input tensor is [T, 3]
+    Handles: 1D tensor [T] -> [T,3] 
+    2D tensor [T,1] -> [T,3] 
+    [T,3] remains as is
+    """
+
+    if tensor.ndim == 1:
+        tensor = tensor.view(-1, 1) #makes it [T,1]
+
+    if tensor.shape[-1] == 1:
+        tensor = tensor.repeat(1,3)
+    return tensor
