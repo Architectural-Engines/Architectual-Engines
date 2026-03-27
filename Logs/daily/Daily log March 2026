@@ -1,13 +1,14 @@
 Daily log:
-***NOTE: Developmental Notes added as placeholers to be updated at later date***
+***NOTE: Developmental, Conceptual, Directional, Insight Notes added as placeholers to be updated at later date***
+
 
 03/22/2026:
 
-  Moved structures from individual to organization github.
-    -Trajectory seed generator
-    -Anneal V1
-    -200 Intial seeds of 4 movement type
-    -cleaned up READMES for clarity
+Moved structures from individual to organization github.
+  -Trajectory seed generator
+  -Anneal V1
+  -200 Intial seeds of 4 movement type
+  -cleaned up READMES for clarity
 
 03/23/2026:
 
@@ -40,8 +41,21 @@ Daily log:
 -updated ANNEAL V1 readme
 -Added additional images to experimental (toroidal-wave) original equation and 4 iterations
 -Updated readmes for all log folders
--(ANNEAL V2- Developmental note 1A:01) (Tuning)
--(ANNEAL V2- Developmental note 1B:01) (Conceptual/Directional)
--(ANNEAL V2- Developmental note 1C:01) (Insight/Compressions/Expression)
+-(ANNEAL V2- Developmental note 1A:00) (Tuning)
+-(ANNEAL V2- Developmental note 1B:00) (Conceptual/Directional)
+-(ANNEAL V2- Developmental note 1C:00) (Insight/Compressions/Expression)
+
+03/26/2026:
+-Added a logging to find Ops/Sec
+*****Note: uncertainty was being collapsed from 20 inputs to a single scaler (MAJOR) fix.*****
+  Note: The data will give information regarding "run_id", "ops_count", "elapsed_time_sec", "cpu", "gpu", "ram_gb", "timestamp"
+        experiment: The original purpose was to find how many ops/second the model processes at when on legacy hardware.
+  Module for logging will be added seperately in the Modules section.  with instructions.
+-Tensor/ Scalar mismatches
+-(ANNEAL V2- Developmental note 1D:00)
+-(ANNEAL V2- Directional note 1F:00)
+-(ANNEAL V2- Conceptual note 1E:00)
+-(ANNEAL V2- Directional note 1G:00
+-(ANNEAL V2- Conceptual note 1H:00)
 
     
