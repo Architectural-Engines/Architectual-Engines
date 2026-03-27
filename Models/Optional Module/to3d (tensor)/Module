@@ -1,0 +1,7 @@
+def to3d(tensor):
+        """
+        Force any tensor affecting positions to have last dim 3
+        """
+        if tensor.shape[-1] != 3:
+            tensor = tensor[..., :3]
+            return tensor
