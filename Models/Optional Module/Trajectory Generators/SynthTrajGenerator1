@@ -1,5 +1,5 @@
-def generate_random_trajectory(num_points=55, motion_type='circular', noise=0.0000):
-    t = torch.linspace(0.0, 121.0, steps=num_points)
+def generate_random_trajectory(num_points=0.0, motion_type='motion_type', noise=0.0000):
+    t = torch.linspace(0.0, 0.0, steps=num_points)
 
     if motion_type == 'linear':
         x = t * 0.05
