@@ -58,4 +58,49 @@ Moved structures from individual to organization github.
 -(ANNEAL V2- Directional note 1G:00
 -(ANNEAL V2- Conceptual note 1H:00)
 
+03/27/2026:
+
+Logger / Timelogger Fixes:
+
+-Resolved run_id issues — now auto-incrementing per run.
+-Clarified instance vs class usage (start_timelogger vs Timelogger)
+-Converted tensors (uncertainty) to Python lists for CSV logging.
+-Added multi-column logging for uncertainty (unc_0…unc_19) for readability.
+-Confirmed .save() must be called on the instance, after the training loop, to write CSV.
+
+Branch / Forward Pass Adjustments:
+
+-Identified missing branches and resolved_branches; fixed logic to ensure each branch is processed.
+-_mlp_branch now handles list → tensor conversion at the start to prevent .unsqueeze and .shape errors.
+-Observed that separating B, E dimensions prevented collapsing branches, allowing meaningful trajectories.
+
+Uncertainty & Trajectory Enhancements:
+
+-Switched uncertainty from scalar → vector (20 elements) per step.
+Forward pass now properly produces multiple trajectories without averaging them into one.
+Early observations:
+
+-Loss dropped dramatically after extending dimensions.
+-Mean / max uncertainty tracked realistically across branches.
+
+Run / Logging Observations:
+
+-CSVs were writing horizontally due to multiple uncertainty columns per row
+identified fix needed to structure per-step rows.
+-Logging every step produces massive tables; reduced epochs to manage overfitting and CSV size.
+-Confirmed CSV path defaults to current working directory; print statements suggested to confirm.
+
+Performance Highlights:
+
+-Model showing remarkable stability with new latent space + uncertainty handling.
+-Early numbers post-adjustments:
+-Loss: ~0.0004
+-Mean uncertainty: sitting at ~0.3463 from ~1.xxx
+-Max uncertainty: sitting at ~0.5074 from ~1.5xx
+-Overall performance cut previous metrics by ~2/3 — huge improvement in stability and representation of trajectories.
+
+(Conceptual Note/Directional Note 1I:00)
+(ANNEAL V2 - Developmental Note 1J:00)
+(ANNEAL V2 - Developmentsl Note 1k:00)
+
     
