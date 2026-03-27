@@ -1,0 +1,17 @@
+delta_3D = ensure_traj3D(delta)
+        for effect in environmental_symbols:
+            weight = effect_weights.get(effect["symbol"],0 ,0 )
+            if weight == 0.0:
+                continue
+            effect_delta = compute_effect(effect,ensure_traj3D(delta_nn))
+            velocities += weight * effect_delta
+
+            if effect["symbol"] == "(PLACEHOLDER FOR SYMBOL)":
+                pos_adjusted += effect_delta * self.magnetic_weight
+            else:
+                pos_adjusted += effect_delta * weight
+
+            if effect["symbol"] == "(PLACEHOLDER FOR SYMBOL)":
+                pos_adjusted += effect_delta * self.coriolis_weight
+            else:
+                pos_adjusted += effect_delta * weight
