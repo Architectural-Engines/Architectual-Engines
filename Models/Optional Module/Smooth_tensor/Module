@@ -1,0 +1,18 @@
+def smooth_tensor(x, kernel_size = 3):
+    kernel_size = int(kernel_size)
+
+    if x.ndim == 1:          ### x: Tensor of shape (T,) or (T, C)
+        x= x.view(1, 1, -1)  ### (batch=1, channel=1, length=T)
+
+    elif x.ndim == 2:
+        x= x.transpose (0, 1).unsqueeze(0)  # (1, C, T)
+    else:
+        raise ValueError(f"smooth_tensor: unsupported ndim = {x.ndim}")
+    
+    kernel = torch.ones (1, 1, kernel_size, device= x.device) / kernel_size
+    x_smooth = F.conv1d(x, kernel, padding = kernel_size//2)
+
+    if x.ndim == 1:
+        return x_smooth.view(-1)
+    else:
+        return x_smooth.squeeze(0).transpose(0,1)
