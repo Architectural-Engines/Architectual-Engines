@@ -237,5 +237,48 @@ Common Failure Modes Identified:
 -Established stable data flow from main → train → forward
 -Model now receives complete, correctly shaped inputs
 
+03/30/2026 PART 1:
+
+Focus: Fixing train_on_synthetic workflow, prep_trajectory, and forward pass in ProbTrajectory5k model.
+Major theme: Incrementally harder errors; logic flow and tensor handling became clearer as session progressed.
+Approach: Step-by-step debugging, using prints, careful tensor checks, and consolidating forward + compute calls.
+
+Key Issues:
+prep_trajectory errors:
+-NoneType object subscriptable → caused by ensure_traj returning None.
+-Multiple tensors (t, trajectory, pos_target, pos_class) needed consistent handling and smoothing.
+-Debug prints revealed correct input tensors but missing output due to function return issues.
+
+Tensor construction warnings:
+-torch.tensor(existing_tensor) warned: use .detach().clone() to avoid errors.
+-Resolved by ensuring tensors are properly cloned/detached before transformations.
+
+train_on_synthetic positional arguments:
+-Missing or extra arguments: theta_d, traj, pos_target_clean, resolved_state, branch_out.
+-pos_target_clean was undefined in main execution → identified and defined locally.
+-theta_d handled with default zero tensor if None.
+
+Forward pass / compute method
+-AttributeError: object has no attribute 'compute'
+Root causes:
+-compute function not correctly indented within the class
+Forward method using self.compute before Python recognized it
+Solution: compute defined as a class method, single-indented inside class, called from forward.
+Forward return adjusted to unpack self.compute output alongside other return values.
+
+Other recurring themes:
+-Debug prints essential for tracking tensor shapes and types.
+-Errors often stemmed from misaligned variable names or missing returns, not core logic.
+-Session emphasized order of execution: initial parse → global loads → main execution → train loops → forward pass.
+
+Major Fixes:
+-Added proper compute method inside ProbTrajectory5k class.
+-Forward method now correctly calls self.compute(traj, P_d, theta_d, motion_type).
+-Defined pos_target_clean and t_clean in main execution for synthetic training.
+-Tensor cloning/detach fixed warnings.
+-Ensured all required outputs from forward and compute are returned and unpacked consistently.
+-Print-based debugging helped track NoneType issues and confirm shapes.
+
+
 
     
