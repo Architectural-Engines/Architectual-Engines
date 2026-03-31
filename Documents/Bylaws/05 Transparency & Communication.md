@@ -1,3 +1,5 @@
+|| [PREVIOUS Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [NEXT Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
+
 5 ***Transparency & Communication***
 
 **(Changeable only by 100% unanimous board vote including the Founder + external auditor approval)**
