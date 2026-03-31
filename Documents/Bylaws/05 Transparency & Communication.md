@@ -42,5 +42,5 @@ All governance records, meeting notes, decisions, budgets, AI advisory outputs, 
    ***Version 0.01a***
     ***2/23/2026***
 
-    || [PREVIOUS Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [NEXT Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
+|| [PREVIOUS Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [NEXT Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
 
