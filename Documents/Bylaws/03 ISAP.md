@@ -59,3 +59,6 @@ To enable funding in regions where traditional datasets are incomplete, unreliab
 
 ***Version 0.01c***
 ***2/25/2026***
+
+
+|| [PREVIOUS Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [NEXT Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) ||
