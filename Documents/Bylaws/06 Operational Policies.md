@@ -1,3 +1,5 @@
+|| [PREVIOUS Transparency & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) || [NEXT Amendments & Revisions](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/07%20Amendments%20%26%20Revisions.md) ||
+
 6 **Operational Policies**
 
 6.1 **Code of Conduct & Ethics**
