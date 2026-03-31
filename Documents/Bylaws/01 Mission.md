@@ -64,3 +64,5 @@
 
 ***Version 0.01b***
 ***2/24/2026***
+
+[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)
