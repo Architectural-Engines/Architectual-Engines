@@ -20,7 +20,7 @@ Do not build from the seed model without a back up.  this is to return the model
 
 [^1d]: [Stable Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds)
 [^1la]: [Circular](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Seeds/Stability%20examples/Circular%20examples%20stability.png)
-[^1lb]: [Linear](:https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Seeds/Stability%20examples/Linear%20examples%20stability.png)
-[^1lc]:[Oscillatory](:https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Seeds/Stability%20examples/Oscillatory%20examples%20stability.png)
+[^1lb]: [Linear](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Seeds/Stability%20examples/Linear%20examples%20stability.png)
+[^1lc]:[Oscillatory](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Seeds/Stability%20examples/Oscillatory%20examples%20stability.png)
 [^1ld]:[RandomWalk](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Seeds/Stability%20examples/Random%20walk%20example%20stability.png)
           
