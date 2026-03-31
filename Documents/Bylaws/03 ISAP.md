@@ -1,4 +1,4 @@
-|| [PREVIOUS Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [NEXT Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) ||
+|| [PREVIOUS Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [NEXT Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
 ***3 Infrastructure Surplus Allocation Protocol (ISAP)***
 
@@ -61,4 +61,4 @@ To enable funding in regions where traditional datasets are incomplete, unreliab
 ***2/25/2026***
 
 
-|| [PREVIOUS Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [NEXT Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) ||
+|| [PREVIOUS Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [NEXT Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
