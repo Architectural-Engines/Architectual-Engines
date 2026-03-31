@@ -1,4 +1,4 @@
-|| [PREVIOUS ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md) || [NEXT Transparancy & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) ||
+|| [PREVIOUS ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md) || [NEXT Transparancy & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
 ***4 Membership & Stakeholders***
 
@@ -101,4 +101,4 @@
 ***2/24/2026***
 
 
-|| [PREVIOUS ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md) || [NEXT Transparancy & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) ||
+|| [PREVIOUS ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md) || [NEXT Transparancy & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
