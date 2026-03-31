@@ -1,4 +1,4 @@
-"[^2b]:[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)"
+[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)
 
 1.) Mission:
 
