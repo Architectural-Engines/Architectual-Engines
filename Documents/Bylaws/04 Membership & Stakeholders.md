@@ -1,3 +1,5 @@
+|| [PREVIOUS ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md) || [NEXT Transparancy & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) ||
+
 ***4 Membership & Stakeholders***
 
 4.1 **Types of Stakeholders (no formal “members”)**
