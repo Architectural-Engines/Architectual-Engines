@@ -1,3 +1,4 @@
+||[OPTIONAL Modules](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/Optional%20Module) || [README](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/README.md) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
 -stabalize boundary conditions (!!!)
 
@@ -21,4 +22,6 @@ add conditions for preprocessing. (after model tuning, **Don't remove the trajec
 
 focus on the environment(1-24-26)
 
-(1-26-26)- Phase II - Post Divergence Trajectory Synthesis Model begins. 
+(1-26-26)- Phase II - Post Divergence Trajectory Synthesis Model begins.
+
+||[OPTIONAL Modules](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/Optional%20Module) || [README](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/README.md) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
