@@ -44,4 +44,4 @@ Summary:
 -Branches and state dimensions define exploration freedom and trajectory fidelity.
 -Future additions will expand this guide to include branch mismatches, time feature impacts, and failure modes.
 
-[^1z]:Epsilon(https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/Failure%20Exploration/Epsilon/README.md)
+[^1z]:[Epsilon] (https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/Failure%20Exploration/Epsilon/README.md)
