@@ -1,4 +1,4 @@
-|| [PREVIOUS Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
+|| [PREVIOUS Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
 7 **Amendments & Revisions**
 
@@ -59,4 +59,4 @@
 **Version 0.01b**
 **2/24/2026**
 
-|| [PREVIOUS Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
+|| [PREVIOUS Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
