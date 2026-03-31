@@ -1,0 +1,16 @@
+Daily log:
+***NOTE: Developmental, Conceptual, Directional, Insight Notes added as placeholers to be updated at later date***
+
+
+03/26/2026:
+-Added a logging to find Ops/Sec
+*****Note: uncertainty was being collapsed from 20 inputs to a single scaler (MAJOR) fix.*****
+  Note: The data will give information regarding "run_id", "ops_count", "elapsed_time_sec", "cpu", "gpu", "ram_gb", "timestamp"
+        experiment: The original purpose was to find how many ops/second the model processes at when on legacy hardware.
+  Module for logging will be added seperately in the Modules section.  with instructions.
+-Tensor/ Scalar mismatches
+-(ANNEAL V2- Developmental note 1D:00)
+-(ANNEAL V2- Directional note 1F:00)
+-(ANNEAL V2- Conceptual note 1E:00)
+-(ANNEAL V2- Directional note 1G:00
+-(ANNEAL V2- Conceptual note 1H:00)
