@@ -37,3 +37,6 @@
 
 **Version 0.01b**
 **2/24/2026**
+
+
+|| [PREVIOUS Mission](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/01%20Mission.md) || [NEXT ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md) ||
