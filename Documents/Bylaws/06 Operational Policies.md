@@ -94,3 +94,5 @@
 
 **Version 0.01b**
 **2/24/2026**
+
+|| [PREVIOUS Transparency & Communication](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/05%20Transparency%20%26%20Communication.md) || [NEXT Amendments & Revisions](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/07%20Amendments%20%26%20Revisions.md) ||
