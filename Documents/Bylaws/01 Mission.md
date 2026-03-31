@@ -1,6 +1,6 @@
-[^2b]:[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)"
+"[^2b]:[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)"
 
-1.) ***Mission***:
+1.) Mission:
 
     Architectural Engines exists to lower the barrier of entry for collapse-based reasoning systems. By providing free, open,
     minimal skeletons that run on commodity hardware (CC0).
