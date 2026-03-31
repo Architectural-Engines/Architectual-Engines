@@ -1,4 +1,4 @@
-[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)
+||[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
 1.) Mission:
 
@@ -65,4 +65,4 @@
 ***Version 0.01b***
 ***2/24/2026***
 
-[NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md)
+|| [NEXT Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
