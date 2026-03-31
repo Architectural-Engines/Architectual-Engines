@@ -1,3 +1,6 @@
+[PREVIOUS Mission](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/01%20Mission.md)  [NEXT ISAP](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/03%20ISAP.md)
+
+
 2.1 **Voting Rules**: 
     Locked in Bylaws
 
