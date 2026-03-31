@@ -1,3 +1,5 @@
+|| [PREVIOUS Voting Rules](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/02%20Voting%20Rules.md) || [NEXT Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) ||
+
 ***3 Infrastructure Surplus Allocation Protocol (ISAP)***
 
 **3.1 Amendment rules**: 
