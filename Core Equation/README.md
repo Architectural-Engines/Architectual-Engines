@@ -1,11 +1,11 @@
-Anneal V1 Core Equation:
+Anneal V1:[^1a] Core Equation:
 
 This README describes the skeletal core equation used in Anneal V1 to model latent trajectory propagation in a branch-wise, high-dimensional space.
 
 Equation Overview:
 The system computes a weighted sum of branch-wise latent trajectories:
 
-**Where**:
+**Where**:[^1k]
   Sc(t) — resulting latent trajectory at time (t)
   alpha — softmax-weighted contribution of branch (i)
   Pd, Theta — base position and angle inputs
@@ -14,7 +14,7 @@ The system computes a weighted sum of branch-wise latent trajectories:
   
 Each branch encodes trajectory as a 3D complex vector:
 
-**Where**:
+**Where**:[^1k]
   Xi(t), Yi(t), Zi(t) — real-space latent displacements
   j — imaginary unit
   Negative signs encode directional coupling between axes
@@ -24,10 +24,14 @@ Each branch encodes trajectory as a 3D complex vector:
   Weighted summation with Alpha(i) ensures that each branch influences the final trajectory proportionally.
   Designed for high-dimensional exploration with minimal parameters, forming the basis for trajectory annealing before symbolic           layers or higher-level abstractions are applied.
     
-**Notes**:
+**Notes**:[^1e]
   Lightweight and modular for experimentation in synthetic or small-scale datasets.
   Enables global dispersal of trajectory information across branches.
-  Serves as the pre-symbolic engine in Anneal V1.
+  Serves as the pre-symbolic engine in Anneal V1:[^1a]
 
-  ***Version 0.01a***
-  ***2/25/2026***
+  ***Version 0.01b***
+  ***2/30/2026***
+
+  [^1a]:[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/ANNEAL%20V1)
+  [^1k]:[Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
+  [^1e]:[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs)
