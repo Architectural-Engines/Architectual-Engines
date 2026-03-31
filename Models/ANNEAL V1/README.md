@@ -1,3 +1,5 @@
+||[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/ANNEAL%20V1%20untuned.py) || [ANNEAL V1 prelog](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/Log.txt) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
+
 ***Anneal V1*** — Post Divergence Trajectory System
 
 Minimal forward-defined system for exploring trajectory formation, stability, and divergence.
@@ -108,3 +110,6 @@ Lightweight, modular, and designed for rapid experimentation.*
   
   License
   CC0 / Public Domain
+
+
+  ||[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/ANNEAL%20V1%20untuned.py) || [ANNEAL V1 prelog](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/Log.txt) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
