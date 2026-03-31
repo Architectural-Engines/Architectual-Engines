@@ -27,4 +27,9 @@ Logs: [^1e]
 **Takeaway**
 The `Models` folder is a **living archive of validated model development**, providing a stable reference point while allowing ongoing conceptual exploration.
 
-[^1a]:[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/commit/aa82c6c3cfd76c4c1ed29bd8f32ac665a9adbd91) [^1b]:[Modules](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/Optional%20Module) [^1c]:[Seed Generator](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds/Seed%20Generator) [^1d]:[Seeds Premade](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) [^1e]:[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs) [^1f]:[Experiments](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments)
+[^1a]:[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/commit/aa82c6c3cfd76c4c1ed29bd8f32ac665a9adbd91)
+[^1b]:[Modules](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/Optional%20Module)
+[^1c]:[Seed Generator](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds/Seed%20Generator)
+[^1d]:[Seeds Premade](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds)
+[^1e]:[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs)
+[^1f]:[Experiments](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments)
