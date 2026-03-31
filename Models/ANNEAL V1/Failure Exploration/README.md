@@ -1,7 +1,7 @@
 Anneal V1 – Exploration Overview:
 This guide documents the key behaviors, failure points, and rationale behind moving Anneal V1 toward high-dimensional and 3D phase space modeling. It provides an overview of core concepts without delving into tuning specifics, making it suitable for new explorers or reviewers.
 
-Epsilon Injection Phase Space Effects: Epsilon directly influences how Anneal V1 navigates the trajectory space:
+Epsilon:[^1z] Injection Phase Space Effects: Epsilon directly influences how Anneal V1 navigates the trajectory space:
 
 Direct dependencies: epsilon ties to time_feat_dim, time_steps, and noise.
 
@@ -43,3 +43,5 @@ Summary:
 -Moving to 3D phase/state space corrects trajectory misrepresentation, stabilizes uncertainty measurements, and allows for higher-fidelity exploration.
 -Branches and state dimensions define exploration freedom and trajectory fidelity.
 -Future additions will expand this guide to include branch mismatches, time feature impacts, and failure modes.
+
+[^1z]:Epsilon(https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/Failure%20Exploration/Epsilon/README.md)
