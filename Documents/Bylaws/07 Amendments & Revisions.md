@@ -1,3 +1,5 @@
+|| [PREVIOUS Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
+
 7 **Amendments & Revisions**
 
 7.1 **Process for Updating Bylaws or Governance Documents**
@@ -56,3 +58,5 @@
 
 **Version 0.01b**
 **2/24/2026**
+
+|| [PREVIOUS Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) ||
