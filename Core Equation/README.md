@@ -1,4 +1,4 @@
-||[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/daily) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
 
 
 Anneal V1:[^1a] [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
@@ -39,4 +39,4 @@ Each branch encodes trajectory as a 3D complex vector:
   [^1k]:[Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
   [^1e]:[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs)
 
-  ||[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/daily) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
