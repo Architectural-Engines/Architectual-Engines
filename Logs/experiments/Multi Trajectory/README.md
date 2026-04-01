@@ -5,9 +5,13 @@
 **Model being used**:[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/ANNEAL%20V1)
 
 **Trajectories types being tested**:
+
   -Single starting point with random branching, does not return to single path. [Branching](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments/Multi%20Trajectory/single_trajectory_branching)
+  
   -Single starting point forming multiple trajectories.[Single to multi](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments/Multi%20Trajectory/single_trajectory_multi_branch)
+  
   -Multiple starting points to a single end point.[Multi](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments/Multi%20Trajectory/multi_trajectory_converge)
+  
   -Single starting point with a divergence, then return to a single point and continue.[Recombine](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments/Multi%20Trajectory/single_trajectory_diverge_recombine)
 
 **Purpose**: To test how [ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/ANNEAL%20V1) handles trajectories with constrained inputs, how divergence is handled.
