@@ -1,3 +1,5 @@
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
+
 ***Models***
 
 **Purpose**
@@ -33,3 +35,5 @@ The `Models` folder is a **living archive of validated model development**, prov
 [^1d]:[Seeds Premade](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds)
 [^1e]:[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs)
 [^1f]:[Experiments](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/experiments)
+
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
