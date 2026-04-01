@@ -1,4 +1,4 @@
-||[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/daily) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
 
 **Multi Trajectory Test**:
 
@@ -24,4 +24,4 @@ Early Tests showed the model calculates per step not a weighted average across t
 
 All images and meaningful results will be uploaded and explored.    
 
-||[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/daily) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
