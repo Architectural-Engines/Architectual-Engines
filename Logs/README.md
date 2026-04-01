@@ -1,3 +1,6 @@
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
+
+
 **Architectural Engines Logs**:
 
 This folder contains logs for Architectural Engines main development.  
@@ -17,3 +20,5 @@ This folder contains logs for Architectural Engines main development.
 
 ***Version 0.01a***
 ***3/25/2026***
+
+||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [[Seeds](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Seeds) || [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
