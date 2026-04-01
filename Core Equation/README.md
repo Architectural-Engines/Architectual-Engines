@@ -1,6 +1,9 @@
-Anneal V1:[^1a] Core Equation:
+||[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/daily) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
-This README describes the skeletal core equation used in Anneal V1 to model latent trajectory propagation in a branch-wise, high-dimensional space.
+
+Anneal V1:[^1a] [Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
+
+This README describes the skeletal core equation used in [Anneal V1](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/ANNEAL%20V1) to model latent trajectory propagation in a branch-wise, high-dimensional space.
 
 Equation Overview:
 The system computes a weighted sum of branch-wise latent trajectories:
@@ -35,3 +38,5 @@ Each branch encodes trajectory as a 3D complex vector:
   [^1a]:[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models/ANNEAL%20V1)
   [^1k]:[Core Equation](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Core%20Equation)
   [^1e]:[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs)
+
+  ||[Logs](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Logs/daily) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
