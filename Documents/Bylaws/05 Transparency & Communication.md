@@ -1,46 +1,51 @@
 || [PREVIOUS Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [NEXT Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
-5 ***Transparency & Communication***
+**These bylaws represent a conceptual governance framework and statement of founding intent. They have not been formally adopted, legally filed, or enacted. Official bylaws will be established upon nonprofit formation in accordance with applicable law.**
+
+
+**Transparency & Communication**
 
 **(Changeable only by 100% unanimous board vote including the Founder + external auditor approval)**
 
-5.1 **Public Reporting and Recordkeeping**:
+**Public Reporting and Recordkeeping**:
 
 All governance records, meeting notes, decisions, budgets, AI advisory outputs, and project allocations must be publicly accessible and immutable.
 
-    5.1a Primary ledger: 
-        protected public GitHub repository (no force-push, branch protection enabled).
+**Primary ledger**:
 
-    5.1b Permanent timestamping: 
-        Every critical entry must be stamped using OpenTimestamps (Bitcoin-based, no wallet or token required) within 48 hours. Timestamp proofs are committed to the GitHub ledger.
+-protected public GitHub repository (no force-push, branch protection enabled).
 
-    5.1c Audits: 
-        Annual external audit required; full report published on GitHub within 30 days of completion.
+**Permanent timestamping**: 
+Every critical entry must be stamped using OpenTimestamps (Bitcoin-based, no wallet or token required) within 48 hours. Timestamp proofs are committed to the GitHub ledger.
 
-5.2 **Cryptographic Ledger & Reverse Lookup**:
+**Audits**:
 
-    A public reverse-lookup web app (hosted on GitHub Pages + IPFS) must remain live indefinitely.
+-Annual external audit required; full report published on GitHub within 30 days of completion.
 
-    The app must verify all records against both GitHub and OpenTimestamps proofs.
+**Cryptographic Ledger & Reverse Lookup**:
 
-    Any attempt to delete, privatize, or stop updating the ledger or app automatically triggers the Automatic Fork Provision (Section Y) and immediate public disclosure.
+-A public reverse-lookup web app (hosted on GitHub Pages + IPFS) must remain live indefinitely.
 
-5.3 **Internal Communication Protocols**:
+-The app must verify all records against both GitHub and OpenTimestamps proofs.
 
-    All critical decisions and AI advisory sessions must occur on logged channels.
+-Any attempt to delete, privatize, or stop updating the ledger or app automatically triggers the Automatic Fork Provision (Section Y) and immediate public disclosure.
 
-    Full raw AI outputs (prompt + response + verification) must be posted to the GitHub ledger within 24 hours.
+**Internal Communication Protocols**:
 
-    Private channels are limited to sensitive personal data only.
+-All critical decisions and AI advisory sessions must occur on logged channels.
 
-5.4 **External Outreach**:
+-Full raw AI outputs (prompt + response + verification) must be posted to the GitHub ledger within 24 hours.
 
-    All public statements require two-director approval.
+-Private channels are limited to sensitive personal data only.
 
-    Statements must link directly to the relevant GitHub commit and OpenTimestamps proof
+**External Outreach**:
 
-   ***Version 0.01a***
-    ***2/23/2026***
+-All public statements require two-director approval.
+
+-Statements must link directly to the relevant GitHub commit and OpenTimestamps proof
+
+   ***Version 0.01b***
+    ***4/2/2026***
 
 || [PREVIOUS Membership & Stakeholders](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/04%20Membership%20%26%20Stakeholders.md) || [NEXT Operational Policies](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Documents/Bylaws/06%20Operational%20Policies.md) || [Back to Governance](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
