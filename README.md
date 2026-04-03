@@ -1,3 +1,8 @@
+***All models released by this Github repository require tuning for specific use cases.  With exception of the seed generator, all releases models have no functionality until tuned. Any modifications of the seed generator may alter its behavior.  USERS assume full responsibility upon activation, or modification of any model.***
+
+**These bylaws represent a conceptual governance framework and statement of founding intent. They have not been formally adopted, legally filed, or enacted. Official bylaws will be established upon nonprofit formation in accordance with applicable law.**
+
+
 **Mission**:
   Provide fully open-source (CC0) frameworks for intelligent systems, enabling skilled    humans to install, tune, and adapt models for real-world use cases.
   Return 100% of surplus funds:[^1g] to verified humanitarian causes, with no personal gain from Anneal:[^1a] or its forks.
