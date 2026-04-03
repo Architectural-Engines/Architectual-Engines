@@ -1,6 +1,6 @@
 ||[ANNEAL V1](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/ANNEAL%20V1%20untuned.py) || [ANNEAL V1 prelog](https://github.com/Architectural-Engines/Architectual-Engines/blob/main/Models/ANNEAL%20V1/Log.txt) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) ||
 
-***All models released by this Github repository require tuning for specific use cases.  With exception of the seed generator, all releases models have no functionality until tuned. Any modifications of the seed generator may alter its behavior.  USERS assume full responsibility upon activation, or modification of any model.***
+***All models released by this Github repository require tuning for specific use cases.  With exception of the seed generator, all released models have no functionality until tuned. Any modifications of the seed generator may alter its behavior.  USERS assume full responsibility upon activation, or modification of any model.***
 
 
 
