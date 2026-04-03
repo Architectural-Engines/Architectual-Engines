@@ -1,4 +1,4 @@
-***All models released by this Github repository require tuning for specific use cases.  With exception of the seed generator, all releases models have no functionality until tuned. Any modifications of the seed generator may alter its behavior.  USERS assume full responsibility upon activation, or modification of any model.***
+***All models released by this Github repository require tuning for specific use cases.  With exception of the seed generator, all released models have no functionality until tuned. Any modifications of the seed generator may alter its behavior.  USERS assume full responsibility upon activation, or modification of any model.***
 
 **These bylaws represent a conceptual governance framework and statement of founding intent. They have not been formally adopted, legally filed, or enacted. Official bylaws will be established upon nonprofit formation in accordance with applicable law.**
 
