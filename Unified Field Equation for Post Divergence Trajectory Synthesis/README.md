@@ -1,84 +1,84 @@
-Probabilistic Trajectory Model
+**Probabilistic Trajectory Model**
 
-Overview
+**Overview**
 
-Implements a probabilistic trajectory superposition model. Capable of representing the evolution of dynamic systems under uncertainty.
-Models motion as a superposition of multiple plausible trajectories. Capturing both the dominant path and potential divergences due to system perturbations.
+-Implements a probabilistic trajectory superposition model. Capable of representing the evolution of dynamic systems under uncertainty.
 
-The core principle is that motion is not strictly deterministic, but has inherent variability that can be encoded, visualized, and analyzed.
+-Models motion as a superposition of multiple plausible trajectories. Capturing both the dominant path and potential divergences due to system perturbations.
 
+-The core principle is that motion is not strictly deterministic, but has inherent variability that can be encoded, visualized, and analyzed.
 
-1. Branches:
+**Branches**:
 
-Each trajectory is composed of multiple possible branches, each representing a plausible evolution.
+-Each trajectory is composed of multiple possible branches, each representing a plausible evolution.
 
-Branches are assigned probabilistic weights (α), encoding relative likelihood.
+-Branches are assigned probabilistic weights (α), encoding relative likelihood.
 
-Branches incorporate small perturbations, oscillations, and mode-dependent behaviors, which collectively represent the system’s sensitivity to initial conditions.
+-Branches incorporate small perturbations, oscillations, and mode-dependent behaviors, which collectively represent the system’s sensitivity to initial conditions.
 
-2. Complex Representation:
+**Complex Representation**:
 
-Real part: Encodes the primary motion in the space of interest.
+**Real part**: 
 
-Imaginary part: Encodes latent divergence, capturing uncertainty, sensitivity, and branching dynamics.
+Encodes the primary motion in the space of interest.
 
-3. Superposition:
+**Imaginary part**:
 
-Branches are combined using weighted superposition.
+Encodes latent divergence, capturing uncertainty, sensitivity, and branching dynamics.
 
-The most probable path is derived from the real component, while the imaginary component reflects potential divergences.
+**Superposition**:
 
+-Branches are combined using weighted superposition.
 
+-The most probable path is derived from the real component, while the imaginary component reflects potential divergences.
 
-4. Applications:
+**Applications**:
 
-Any dynamic system where motion and divergence are central.
+-Any dynamic system where motion and divergence are central.
 
-Systems with multiple interacting components, chaotic evolution, or sensitivity to small perturbations.
+-Systems with multiple interacting components, chaotic evolution, or sensitivity to small perturbations.
 
-Real-time trajectory planning, predictive simulations, or exploration of system uncertainty.
+-Real-time trajectory planning, predictive simulations, or exploration of system uncertainty.
 
-Python Implementation
+-Python Implementation
 
-The repository contains:
+**The repository contains**:
 
-1. Skeleton Code (main.py)
+**Skeleton Code (main.py)**:
 
-Structured framework for initializing trajectories, generating branches, and performing superposition.
+-Structured framework for initializing trajectories, generating branches, and performing superposition.
 
-2. Branch Implementations
+**Branch Implementations**:
 
-Demonstrates the generation of multiple trajectories with perturbations and divergence encoding.
+-Demonstrates the generation of multiple trajectories with perturbations and divergence encoding.
 
-Configurable number of branches for computational efficiency.
+-Configurable number of branches for computational efficiency.
 
-3. Visualization
+**Visualization**:
 
-3D trajectory plots with branch weighting represented via color or opacity.
+-3D trajectory plots with branch weighting represented via color or opacity.
 
-Optional envelopes representing latent divergence from the imaginary component.
+-Optional envelopes representing latent divergence from the imaginary component.
 
----
+**Usage**:
 
-Usage
-
-1. Define initial conditions:
+**Define initial conditions**:
 
 Positions, orientations, velocities, and divergence parameters.
 
-2. Generate branches:
+**Generate branches**:
 
 Include oscillations, divergence factors, and mode-dependent behavior.
 
-3. Perform superposition:
+**Perform superposition**:
 
 Weighted combination of branches to produce a most probable path and uncertainty envelope.
 
-4. Visualize and analyze:
+**Visualize and analyze**:
 
 Trajectories, divergence envelopes, and probability-weighted branch distributions.
 
-Future Directions
+**Future Directions**:
 
 Scaling to multi-object interactions: Systems with multiple interacting bodies or components.
 
@@ -88,10 +88,10 @@ Probabilistic simulations of complex systems: Applying superposition to chaotic 
 
 Integration with control systems: Real-time adjustment of motion paths under uncertainty.
 
-Notes
+**Notes**:
 
 Emphasizes motion itself over deterministic description.
 
 Framework is domain-agnostic, applicable wherever the dynamics of motion and divergence are relevant.
 
-All code is public domain (CC0), free to adapt for research, education, or practical applications.
+**All code is public domain (CC0), free to adapt for research, education, or practical applications.**
