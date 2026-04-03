@@ -1,5 +1,7 @@
 ||[Post Divergence Sythesis](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Unified%20Field%20Equation%20for%20Post%20Divergence%20Trajectory%20Synthesis) || [Models](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Models) || [Architectural Engines Home](https://github.com/Architectural-Engines/Architectual-Engines/tree/main) || [Bylaws](https://github.com/Architectural-Engines/Architectual-Engines/tree/main/Documents/Bylaws) ||
 
+***All models released by this Github repository require tuning for specific use cases.  With exception of the seed generator, all releases models have no functionality until tuned. Any modifications of the seed generator may alter its behavior.  USERS assume full responsibility upon activation, or modification of any model.***
+
 **How to basic guide**:
 
 Seed generator **was/is** used to map intial seeds.  Choice of seed is dependent on use case and exploration.  
