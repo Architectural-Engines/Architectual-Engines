@@ -1,29 +1,37 @@
 ***Toroidal Wave Experiment***
 
-**Purpose**
-This experiment explored balancing the core equation across multiple iterations.  
+**Purpose**:
 
-**Outcome**
-- Attempted balancing **without resolution** — outcome: **failed**.    
+-This experiment explored balancing the core equation across multiple iterations.  
+
+**Outcome**:
+
+- Attempted balancing **without resolution** — outcome: **failed**.
+   
 - Observers may notice patterns or tendencies when comparing the equation iterations with session logs.
 
-**Notes**
-- All four iterations of the equation are included for reference.  
-- The results serve as **conceptual anchors**, not as instructions or solutions.  
+**Notes**:
+
+- All four iterations of the equation are included for reference.
+
+- The results serve as **conceptual anchors**, not as instructions or solutions.
+  
 - Failure here is intentional and informative — it provides insight into constraints and tendencies.
 
-**Takeaway**
-This experiment is part of the **trial-and-observe process**. Insights emerge indirectly through iteration and reflection, not explicit instruction.
+**Takeaway**:
+
+-This experiment is part of the **trial-and-observe process**. Insights emerge indirectly through iteration and reflection, not explicit instruction.
+
+**(FAILED)** Shelved for revist.
 
 
 **Toroidal-Coupled Wave Condition**
 
-This section explores a toroidal-coupled wave condition derived from external sources and iteratively refined through model interaction. 
+-This section explores a toroidal-coupled wave condition derived from external sources and iteratively refined through model interaction. 
 
-This is not considered a validated physical model, but a structured exploration of balance conditions and emergent behavior.
+-This is not considered a validated physical model, but a structured exploration of balance conditions and emergent behavior.
 
-
-This equation represents a probability-weighted circulation constraint on a quantum wave function defined on a toroidal manifold.
+-This equation represents a probability-weighted circulation constraint on a quantum wave function defined on a toroidal manifold.
 
 **Equation**:
 
