@@ -1,0 +1,46 @@
+# test_wallets.py
+# Minimal template for testing cryptographic ledger transactions
+
+import uuid
+from collections import defaultdict
+
+class TestWallet:
+    """A simple test wallet with an ID, balance, and transaction log."""
+    def __init__(self, initial_balance=1000):
+        self.id = str(uuid.uuid4())  # unique wallet ID
+        self.balance = initial_balance
+        self.tx_log = []  # log of sent/received transactions
+
+    def send(self, amount, recipient_wallet):
+        if amount > self.balance:
+            raise ValueError("Insufficient funds")
+        self.balance -= amount
+        recipient_wallet.receive(amount, self.id)
+        self.tx_log.append({"type": "send", "to": recipient_wallet.id, "amount": amount})
+
+    def receive(self, amount, sender_id):
+        self.balance += amount
+        self.tx_log.append({"type": "receive", "from": sender_id, "amount": amount})
+
+    def __repr__(self):
+        return f"<TestWallet id={self.id[:8]} balance={self.balance}>"
+
+# Example usage
+
+if __name__ == "__main__":
+    # Generate multiple test wallets
+    wallets = [TestWallet(initial_balance=1000) for _ in range(3)]
+
+    print("Initial wallet states:")
+    for w in wallets:
+        print(w)
+
+    # Simulate a transaction
+    print("\nPerforming a test transaction...")
+    wallets[0].send(250, wallets[1])
+
+    print("\nWallet states after transaction:")
+    for w in wallets:
+        print(w)
+        print("Transaction log:", w.tx_log)
+        print("---")
