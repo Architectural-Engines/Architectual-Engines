@@ -1,0 +1,272 @@
+Log:
+
+**The intended architecture is now**:
+
+MLPBranch
+    ↓
+MLP forward
+    ↓
+x
+    ↓
+AnnealStateGeneration.forward()
+    ↓
+branch processing
+    ↓
+branch_update
+    ↓
+positional_prediction
+    ↓
+return
+
+"MLPBranch" has one responsibility: create "x" through the MLP transformation.
+
+The main model owns everything that happens to "x" afterward.
+
+
+
+MLP branch representation
+
+The branch representation begins as:
+
+branch_embed = [55, 3]
+
+where:
+
+- "55" = number of branches
+- "3" = state-space dimensions
+
+The MLP transforms this representation:
+
+[55, 3]
+   ↓
+MLP1
+[55, 12]
+   ↓
+MLP2
+[55, 3]
+   ↓
+x
+
+The final MLP output is therefore:
+
+x = [55, 3]
+
+"x" is the object that should be passed into the downstream branch-processing pipeline.
+
+
+
+Class structure
+
+"MLPBranch" is now its own "nn.Module".
+
+The intended ownership is:
+
+class MLPBranch(nn.Module):
+    ...
+    
+    def forward(...):
+        ...
+        return x
+
+
+class AnnealStateGeneration(nn.Module):
+    def __init__(...):
+        self.mlp_branch = MLPBranch(...)
+
+    def forward(...):
+        x = self.mlp_branch(...)
+        ...
+        return positional_prediction
+
+The MLP branch is instantiated inside "AnnealStateGeneration.__init__()" and invoked from the main model's "forward()".
+
+The class itself is not instantiated repeatedly during "forward()".
+
+
+
+Important scope discovery
+
+An earlier implementation contained "mlp_branch" as a "def" nested inside "__init__".
+
+That made it a local function rather than a model component.
+
+The refactor established the correct separation:
+
+class definition
+    ↓
+MLPBranch
+    ↓
+model.__init__()
+    ↓
+self.mlp_branch
+    ↓
+model.forward()
+
+This also makes the MLP's learnable parameters part of the model's registered parameters.
+
+
+
+"branch_embed" vs "embed"
+
+An important naming/representation issue was identified.
+
+If:
+
+branch_embed = nn.Parameter(...)
+embed = branch_embed
+
+then "embed" is not a transformed version of "branch_embed".
+
+It is simply another reference to the same object.
+
+The conceptual distinction is:
+
+branch_embed
+    ↓
+MLP1
+    ↓
+MLP2
+    ↓
+x
+
+Therefore downstream processing should use "x" when the intended input is the transformed branch representation, rather than accidentally continuing to use the original "embed".
+
+
+
+Device handling
+
+The MLP layers should not be placed into configuration merely to expose their device.
+
+Configuration describes architecture:
+
+state dimensions
+branch count
+MLP dimensions
+
+Runtime tensors/modules determine device:
+
+x.device
+
+or, when necessary inside the MLP module:
+
+self.mlp1.weight.device
+
+General rule:
+
+«Config describes what. Runtime tensors determine where.»
+
+
+
+Downstream branch processing
+
+The intended pipeline after MLP is:
+
+x [55, 3]
+    ↓
+add / incorporate step_progression
+    ↓
+add / incorporate channel information
+    ↓
+branch_out
+    ↓
+branch_update
+    ↓
+positional_prediction
+
+The expansion/arrangement of "x" for the larger branch-processing representation belongs in "AnnealStateGeneration.forward()", not in "MLPBranch", because MLP's responsibility ends when it produces "x".
+
+---
+
+Successful checkpoint
+
+The refactor successfully reached:
+
+x before MLP: torch.Size([55, 3])
+MLP1 TRANSFORMATION BEGIN
+MLP2 TRANSFORMATION COMPLETE
+branch_update: torch.Size([55, 3])
+
+This confirms that the MLP transformation is executing and producing the expected branch dimensionality at that checkpoint.
+
+
+
+Final error encountered
+
+The final test failed in "main.py" with:
+
+NameError: name 'x' is not defined
+
+The immediate cause was attempting to call the model from "main" using:
+
+output = model(x, ...)
+
+even though "x" is created internally inside the model's "forward()".
+
+This exposed another important boundary:
+
+«"x" is an internal intermediate representation, not necessarily a "main.py" input.»
+
+The expected architecture is:
+
+main
+ ↓
+model(...)
+ ↓
+AnnealStateGeneration.forward()
+ ↓
+MLPBranch.forward()
+ ↓
+x
+ ↓
+branch_update
+ ↓
+positional_prediction
+ ↓
+main receives final output
+
+Therefore "main.py" should not independently reference "x" unless the architecture explicitly defines "x" as an external input.
+
+
+
+Current status
+
+The restructuring has reached the MLP2 transformation and exposed the next issue:
+
+The final output/return pipeline is currently incorrect.
+
+The next session should begin by tracing:
+
+MLP output x
+    ↓
+branch processing
+    ↓
+branch_update
+    ↓
+positional_prediction
+    ↓
+forward return
+    ↓
+main output
+
+Do not assume the final output is correct simply because the intermediate tensor shapes are correct.
+
+The next task is to verify the entire output relationship, not merely repair the last error.
+
+---
+
+Refactor principle
+
+The purpose of this refactor is not to change Anneal's underlying relationships.
+
+It is to make those relationships explicit:
+
+MLPBranch → creates x
+
+AnnealStateGeneration → processes x
+
+forward() → returns positional_prediction
+
+main → consumes the returned prediction
+
+Each component should have a clear boundary and a single responsibility.That last distinction—“the intermediate shape is correct, therefore the output is correct” is false—is probably the most valuable thing to preserve from today's session. 😏
+
