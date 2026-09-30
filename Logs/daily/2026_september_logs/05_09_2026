@@ -1,0 +1,689 @@
+log:
+session A:
+Anneal V1 — Trajectory Visualization Debugging Checkpoint
+Current Status
+The V1 trajectory visualization now renders successfully, but it currently shows only the uncertainty points. The actual generated-state trajectories are not yet being passed into the visualization.
+Latest successful metrics:
+Loss: ~0.0135
+Mean uncertainty: ~0.1007
+Max uncertainty: ~0.3661
+The numerical behavior looks good. The remaining problem is trajectory/state plumbing, not currently the numerical model.
+Visualization Archaeology
+1. Prediction shape
+Current prediction:
+[55, 20, 3]
+ branch × steps × XYZ
+The old visualization contained:
+positional_prediction_visualization = positional_prediction_visualization[0]
+This incorrectly collapsed the 55 branches and was removed.
+Each branch now correctly appears as:
+[20, 3]
+2. Step trigger is NOT a trajectory
+Current positional delta / step trigger:
+[3]
+with values currently:
+[0., 0., 0.]
+The old visualization treated it like a [steps, 3] ground-truth trajectory, which caused the indexing error.
+It was changed to a single point:
+ax.scatter(gt[0], gt[1], gt[2], ...)
+This is semantically correct for the current tensor.
+3. Uncertainty
+Original V1 uncertainty was:
+uncertainty = latent_imag.abs().mean(dim=-1)
+Given latent imaginary state:
+[55, 20, 3]
+this produces:
+[55, 20]
+Current visualization uncertainty is confirmed as:
+[55, 20]
+meaning:
+branch × timestep
+Threshold is scalar:
+threshold ≈ 0.1814
+shape = ()
+The uncertainty visualization now works.
+Important distinction:
+model uncertainty reduction:
+[55,20,3] → [55,20]
+
+visualization color reduction:
+[55,20] → [55]
+The latter is only because ax.plot() needs one color per branch.
+4. Color bug
+After removing the old trajectory loop behavior, the visualization produced:
+colors shape: [55,20,4]
+because uncertainty was being passed through the colormap without reducing the timestep dimension.
+Then:
+colors[branch]
+was:
+[20,4]
+instead of one RGBA color.
+The visualization needs one representative uncertainty value per branch:
+branch_uncertainty = visualization_uncertainty.mean(axis=1)
+giving:
+[55]
+and then:
+colors = plt.cm.viridis(normal_uncertainty)
+giving:
+[55,4]
+This is a visualization projection, not an Anneal uncertainty calculation.
+Major Architectural Discovery
+The old variable called:
+trajectories
+appears to correspond to what is now called:
+generated_state
+The current structure is approximately:
+generated_state = []
+
+generated_state.append(branch_out)
+where:
+branch_out
+    ↓
+branch update
+    ↓
+branch logits
+The important realization:
+branch_out
+    = branch/state update
+
+generated_state
+    = accumulated generated states
+The current model was generating generated_state, but it was effectively going nowhere.
+It was not being returned from forward().
+The likely missing plumbing is therefore:
+branch update
+      ↓
+branch_out
+      ↓
+generated_state.append(...)
+      ↓
+generated_state
+      ↓
+forward() return
+      ↓
+main
+      ↓
+visualization
+rather than trying to construct the trajectory directly from branch_out.
+Important Loop Discovery
+The old code had something resembling:
+for traj_idx, trajectory in enumerate(trajectories):
+This was removed and replaced with:
+for epoch in range(epochs):
+That replacement may have conflated two different concepts.
+epoch
+= training iteration
+
+trajectory index
+= generated-state / trajectory instance
+The old 3 therefore needs to be recovered rather than assumed redundant.
+However, do not blindly restore range(3) yet.
+First establish where the old three entries in trajectories came from.
+Current known structure suggests the three may have been accumulated generated states rather than three fundamentally separate trajectory engines.
+Current Model Output Contract
+Previously the model returned:
+prediction
+positional_delta
+uncertainty
+Conceptually:
+prediction [55,20,3]
+delta [3]
+uncertainty [55,20]
+The model now needs to expose generated_state if the visualization is supposed to inspect it.
+Potential return:
+return positional_prediction, positional_delta, uncertainty, generated_state
+Then main can unpack:
+positional_prediction, positional_delta, uncertainty, generated_state = model(...)
+This has NOT yet been fully wired through and visualized.
+Current Conceptual Pipeline
+The emerging architecture is:
+branch logits
+      ↓
+branch update
+      ↓
+branch_out
+      ↓
+generated_state
+      ↓
+state history / trajectory substrate
+      ↓
+trajectory visualization
+Separate from:
+latent state
+      ↓
+uncertainty
+      ↓
+uncertainty visualization
+And separately:
+prediction
+      ↓
+target / positional delta
+      ↓
+loss
+This explains how the model can have:
+excellent loss,
+stable uncertainty,
+correctly generated states,
+while the visualization still fails to show the trajectory: the generated state exists internally but wasn't exposed to the visualization.
+New Architectural Insight: Motion Type / Identifiers
+Another important discovery emerged during visualization debugging.
+The model is currently being invoked with:
+motion_type=None
+and appears to fall back to linear behavior.
+The resulting uncertainty points therefore form a straight-line structure.
+This suggests motion type may need to be explicitly identified rather than implicitly defaulted.
+Potential conceptual pipeline:
+motion identifier
+      ↓
+trajectory / state-generation rule
+      ↓
+generated state
+      ↓
+uncertainty
+      ↓
+visualization
+This led to the realization:
+Anneal needs identifiers.
+This should remain an open architectural hypothesis, not yet treated as established implementation.
+Current Epistemic State
+Established
+Prediction is [55,20,3].
+Positional delta is [3].
+Visualization uncertainty is [55,20].
+Uncertainty visualization successfully renders.
+Loss is reaching visualization as an actual scalar.
+branch_out feeds generated_state.append(...).
+generated_state is not currently exposed far enough downstream to visualize the actual generated-state trajectory.
+Inferred
+The old trajectories structure may have been the accumulated generated-state history.
+The old three trajectory entries may represent three generated states/trajectory instances rather than three branches.
+Generated state may be the actual substrate from which the trajectory visualization should be constructed.
+Motion identifiers may be necessary to prevent implicit linear/default behavior.
+Unknown
+Exactly what caused three trajectory entries to exist in the old implementation.
+Whether three generated states are architecturally required or were simply an old experimental setting.
+Exact shape of generated_state after stacking/returning.
+Whether trajectory should visualize every generated state, selected states, or a transformed state history.
+Resume Point
+Do not rewrite the visualization.
+First return generated_state from forward() and inspect its exact structure.
+The next archaeological check should be:
+generated_state type
+generated_state length
+generated_state shape
+shape of each generated state
+Then determine how those states should map onto the trajectory visualization.
+The goal is to get the actual generated-state trajectory onto the existing visualization before changing the underlying model.
+The numerical engine currently looks healthy.
+The missing piece is:
+generated state → exposed output → visualization
+
+session B
+Anneal V1 visualization and instrumentation work continued.
+
+The goal of this session was not to modify the architecture prematurely, but to instrument the existing mechanism and observe which quantities actually evolve.
+
+1. Current observable tensor structure
+
+Current representative dimensions:
+
+branches = 55
+steps = 20
+coordinates = 3
+channels = 4
+
+interaction real [55,20,3]
+interaction imag [55,20,3]
+
+branch_out [55,20,4,3]
+
+generated_state [55,20,4,3]
+
+prediction [55,20,3]
+
+uncertainty [55,20]
+
+positional_delta [3]
+
+Alpha:
+
+branch_logits [1]
+alphas [1]
+pruned_alpha [1]
+
+"branch_logits" is currently:
+
+self.branch_logits = nn.Parameter(torch.zeros(1))
+
+Therefore:
+
+F.softmax(self.branch_logits, dim=0)
+
+necessarily produces:
+
+alpha = [1.]
+
+This is expected behavior for a one-element softmax.
+
+Alpha should not be changed until its downstream consumption is understood.
+
+---
+
+2. Major discovery: imaginary interaction is zero
+
+Instrumentation revealed:
+
+=== interaction real ===
+shape: [55,20,3]
+min: 9.8805e-09
+max: 0.7205203
+mean: 0.1007071
+std: 0.1425711
+
+while:
+
+=== interaction imaginary ===
+shape: [55,20,3]
+min: 0
+max: 0
+mean: 0
+std: 0
+
+and subsequently:
+
+=== latent_real_out ===
+shape: [55,20,3]
+mean: 0.1007071
+std: 0.1425711
+
+=== latent_imaginary_out ===
+shape: [55,20,3]
+min: 0
+max: 0
+mean: 0
+std: 0
+
+Therefore the imaginary interaction/output path is currently exactly zero at this point in the forward pass.
+
+This is stronger than merely observing that imaginary values evolve less than real values. 
+
+The current observed behavior is:
+
+latent imaginary
+      ↓
+interaction imaginary
+      ↓
+0
+      ↓
+latent imaginary out
+      ↓
+0
+
+The exact operation responsible for this collapse has not yet been identified. (9/29/2026 issue has been resolved in further notes)
+
+Status
+
+Established: imaginary interaction is zero in the observed run.
+
+Unknown: where the first zeroing/collapse occurs.
+
+Untested: whether the imaginary path is intentionally inactive, obsolete, incorrectly wired, or supposed to receive/generated distributional information.  (detached, fixed in future sessions)
+
+---
+
+3. Important symmetry discovery
+
+The following quantities were observed to have effectively identical statistics:
+
+velocities real
+velocities imaginary
+
+theta real
+theta imaginary
+
+number real
+number imaginary
+
+latent imaginary in
+
+Representative values:
+
+min: -0.11353585
+max: 0.04758810
+mean: -0.00701039
+std: 0.02760198
+
+This means the real/imaginary distinction appears to disappear upstream of the interaction.
+
+The values are not merely similar in scale; the printed statistics are effectively identical.
+
+Further tracing is required to determine whether the tensors themselves are copies, aliases, or independently generated tensors receiving identical values.
+
+---
+
+4. Uncertainty relationship
+
+Current uncertainty:
+
+shape: [55,20]
+
+mean: 0.1007071
+std: 0.0807267
+max: 0.3661200
+
+The mean uncertainty repeatedly matches the mean of "latent_real_out" extremely closely.
+
+This was observed across multiple runs.
+
+Examples:
+
+latent_real_out mean uncertainty mean
+0.093105167 0.093105160
+0.097063563 0.097063563
+0.049819384 0.049819391
+0.074556075 0.074556076
+0.044438355 0.044438351
+0.063910633 0.063910641
+0.100707114 0.100707113
+
+Status
+
+Established: uncertainty and latent-real output currently share an extremely tight mean relationship.
+
+Unknown: whether this is intentional, because uncertainty is derived directly from latent-real magnitude, or caused by the current imaginary collapse.
+
+The exact uncertainty computation should be traced before interpretation.
+
+---
+
+5. Generated state is currently only one snapshot
+
+Current generated-state history:
+
+number of states: 1
+
+state 0:
+shape = [55,20,4,3]
+magnitude = 3.271456
+mean = -0.007010
+std = 0.027599
+
+This is important because the architecture currently records one generated state but does not yet demonstrate temporal state evolution through that history.
+
+The current conceptual behavior is therefore:
+
+generate state
+     ↓
+record state
+     ↓
+stop
+
+rather than:
+
+generate state
+     ↓
+record
+     ↓
+feed state back
+     ↓
+generate new state
+     ↓
+record
+     ↓
+...
+
+Whether the latter is appropriate has not been established.
+
+---
+
+6. Branch state remains alive
+
+Despite the alpha being "[1.]", branch state is not demonstrably collapsed.
+
+"branch_out" remains:
+
+[55,20,4,3]
+
+and varies across branches.
+
+Earlier inspection showed the four channel positions can contain duplicated XYZ values within a branch, while different branches retain different XYZ values.
+
+Therefore:
+
+55 branches
+
+remain structurally present.
+
+The current alpha should therefore not automatically be interpreted as “all branches are pruned.”
+
+Possible interpretation:
+
+alpha = global coefficient
+
+rather than:
+
+alpha = 55-way branch selector
+
+This remains unresolved.
+
+---
+
+7. Positional delta
+
+Current:
+
+shape: [3]
+values: tensor([0., 0., 0.])
+magnitude: 0.0
+
+This is a single positional delta, not a trajectory.
+
+It should remain visualized as a point if visualized at all.
+
+It should not be treated as "[20,3]" trajectory data.
+
+---
+
+8. Visualization restoration
+
+The original V1 visualization was recovered.
+
+Important fixes:
+
+- "positional_prediction" is "[55,20,3]"; branch trajectories must use the branch dimension correctly.
+- Uncertainty is "[55,20]".
+- The uncertainty mask is therefore point-level rather than coordinate-level.
+- Positional delta is "[3]" and is not a trajectory.
+- Scalar loss must be passed into visualization rather than a tuple of model outputs.
+
+Current visualization metrics can successfully display:
+
+Loss
+Mean uncertainty
+Maximum uncertainty
+Prediction trajectories
+High-uncertainty points
+Step trigger
+
+Generated state trajectories are not yet represented as historical trajectories because only one state snapshot currently exists.
+
+---
+
+9. New hypothesis: feedback of generated distributions
+
+A new architectural question emerged from the instrumentation.
+
+Current mechanism appears conceptually similar to:
+
+real state
+    \
+     interaction → output → prediction
+    /
+imaginary state
+
+The question is whether the interaction output/distribution can be fed back into the existing mechanism before producing the final prediction.
+
+Conceptual experiment:
+
+initial existing state
+        ↓
+interaction
+        ↓
+distribution/state₀
+        ↓
+feedback
+        ↓
+interaction
+        ↓
+distribution/state₁
+        ↓
+feedback
+        ↓
+...
+        ↓
+prediction
+        ↓
+loss
+        ↓
+training
+
+This would create internal evolution within a single forward pass.
+
+Important distinction:
+
+Feedback iterations are not training epochs.
+
+Training would remain:
+
+epoch
+  ↓
+model forward
+  ↓
+internal state evolution
+  ↓
+prediction
+  ↓
+loss
+  ↓
+backpropagation
+  ↓
+parameter update
+
+while internal evolution would be:
+
+state₀
+ ↓
+interaction₀
+ ↓
+state₁
+ ↓
+interaction₁
+ ↓
+state₂
+ ↓
+prediction
+
+---
+
+10. Do not implement feedback yet
+
+A placeholder implementation was discussed using hypothetical variables such as:
+
+initial_state
+feedback_steps
+
+These variables do not currently exist in Anneal.
+
+They were conceptual placeholders only.
+
+Before implementing feedback:
+
+1. Locate the actual tensor entering the interaction mechanism.
+2. Locate the actual interaction operation.
+3. Identify the output of that operation.
+4. Determine whether that output can legitimately be fed back into the same mechanism.
+5. Identify the first point where imaginary information becomes zero.
+6. Determine whether the generated state already represents the intended feedback state.
+
+Do not invent a new "initial_state" abstraction until the existing architecture reveals what its initial state actually is.
+
+Do not introduce "feedback_steps" until the mechanism being repeated has been identified.
+
+---
+
+11. Next archaeological targets
+
+When work resumes, inspect these in order:
+
+1. branch_logits
+      ↓
+   alphas
+      ↓
+   threshold / pruned_alpha consumption
+
+2. latent_imaginary_in
+      ↓
+   every operation
+      ↓
+   interaction_imaginary
+
+3. interaction output
+      ↓
+   generated_state
+      ↓
+   possible feedback boundary
+
+4. generated_state history
+      ↓
+   why length == 1
+
+5. uncertainty computation
+      ↓
+   relationship to latent_real_out
+
+The highest-value question is:
+
+«Where does the imaginary information first become zero?»
+
+The second:
+
+«What existing tensor represents the state immediately before/after interaction, and could that tensor naturally re-enter the mechanism?»
+
+---
+
+12. Current epistemic status
+
+Established
+
+- "branch_logits" is a learned scalar parameter "[1]".
+- One-element softmax produces "[1.]".
+- Branch state remains structurally present across 55 branches.
+- "interaction_real" contains substantial nonzero variation.
+- "interaction_imaginary" is exactly zero in observed runs.
+- "latent_imaginary_out" is exactly zero in observed runs.
+- Generated-state history currently contains one state.
+- Positional delta is "[3]" and currently zero.
+- Prediction continues to vary substantially.
+- Uncertainty is "[55,20]".
+- Uncertainty mean closely matches latent-real mean across runs.
+
+Inferred
+
+- Alpha may be a global coefficient rather than branch-specific weighting. 
+- The imaginary path may currently be inactive or under-utilized.
+- Generated state may be functioning as a snapshot rather than an evolving history.
+- A feedback architecture may be possible.
+
+Unknown
+
+- Whether the imaginary path is intentionally zero. (answered later)
+- Where imaginary information first collapses. (answered later)
+- What alpha is intended to control. (answered later)
+- What the threshold does to alpha. (answered later)
+- What tensor is the actual state boundary. (answered later)
+- Whether generated state is intended to feed back. (answered later)
+- Whether repeated interaction produces useful state evolution. (answered later)
+- Whether distributional feedback improves prediction. (answered later)
+
+
+Review the evidence before modifying the mechanism.
