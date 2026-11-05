@@ -1,0 +1,206 @@
+import math
+import time
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+def generate_random_trajectory(num_points=20,duration=150.0,motion_type="oscillatory",noise=0.1):
+    t = torch.linspace(0.0,duration,steps=num_points)
+    if motion_type=='linear':
+        x=t*0.05
+        y=t*0.02
+        z=t*0.01
+    elif motion_type=='circular':
+        x=torch.sin(t*0.05)*5
+        y=torch.cos(t*0.05)*5
+        z=t*0.01
+    elif motion_type=='oscillatory':
+        x=torch.sin(t*0.1)*3
+        y=torch.sin(t*0.2)*2
+        z=torch.cos(t*0.15)*2
+    elif motion_type=='random_walk':
+        x=torch.cumsum(torch.randn(num_points)*0.1,dim=0)
+        y=torch.cumsum(torch.randn(num_points)*0.1,dim=0)
+        z=torch.cumsum(torch.randn(num_points)*0.1,dim=0)
+    else:
+        raise ValueError("Unknown motion_type")
+    synthetic_position=torch.stack([x,y,z],dim=1)
+    if noise>0.0001:
+        synthetic_position+=torch.randn_like(synthetic_position)*noise
+    return t,synthetic_position
+class MLPBranch(nn.Module):
+    def __init__(self,number_branches=55,input_dimension=55,state_dimension=3):
+        super().__init__()
+        mlp1=nn.Linear(state_dimension,input_dimension,bias=False)
+        self.mlp1=mlp1
+        mlp2=nn.Linear(input_dimension,state_dimension,bias=False)
+        self.mlp2=mlp2
+        self.branch_embed=nn.Parameter(torch.randn(number_branches,state_dimension)*0.1)
+    def forward(self,motion_type=None,update_rule=None):
+        branch_state=F.relu(self.mlp1(self.branch_embed))
+        branch_state=self.mlp2(branch_state)
+        return branch_state
+class ProbTrajectory5k(nn.Module):
+    def __init__(self,state_dimension=3,time_scale_dimension=5,hidden_dimension=3,depth_dimension=15,scale_dimension=10,layers=1,
+                 number_branches=55,epsilon=.2,time_feature_dimension=50,time_steps=20,input_dimension=55):
+        super().__init__()
+        self.time_steps=time_steps
+        self.state_dimension=state_dimension
+        self.time_scale_dimension=time_scale_dimension
+        self.time_feature_dimension=time_feature_dimension
+        self.scale_dimension=scale_dimension
+        self.depth_dimension=depth_dimension
+        self.number_branches=number_branches
+        self.layers=layers
+        self.epsilon=epsilon
+        self.noise_scale=.0001
+        self.state_projection=nn.Linear(depth_dimension+time_scale_dimension+scale_dimension,state_dimension,bias=True)
+        self.time_projection_map=nn.Linear(time_feature_dimension,state_dimension,bias=False) 
+        self.layers_map=nn.Linear(layers,state_dimension,bias=False)
+        self.P_map=nn.Linear(3,state_dimension,bias=False)
+        self.Theta_map_real=nn.Linear(3,state_dimension,bias=False)
+        self.Theta_map_imag=nn.Linear(3,state_dimension,bias=False)
+        self.delta_readout=nn.Linear(3,state_dimension,bias=False)
+        self.V_real_head = nn.Linear(hidden_dimension,state_dimension,bias=True)
+        self.V_imag_head = nn.Linear(hidden_dimension,state_dimension,bias=True)
+        self.Theta_real_head = nn.Linear(hidden_dimension,state_dimension,bias=True)
+        self.Theta_imag_head = nn.Linear(hidden_dimension,state_dimension,bias=True)
+        self.branch_logits=nn.Parameter(torch.zeros(number_branches))
+        self.mlp_branch=MLPBranch(self.number_branches,input_dimension,self.state_dimension)
+        self.t=torch.arange(self.time_steps,device=self.time_projection_map.weight.device)
+        self.res_layers=nn.ModuleList([nn.Sequential(nn.LayerNorm(state_dimension),nn.Linear(state_dimension,state_dimension),nn.ReLU(),nn.Linear(state_dimension,state_dimension)
+            ) for _ in range(layers)])
+    def branch_encoding(self):
+        t=torch.linspace(0.0,150.0,steps=self.time_steps)
+        freqs=torch.exp(torch.linspace(math.log(1.0),math.log(10.0),self.time_feature_dimension//2,device=t.device,dtype=t.dtype))
+        #t=torch.arange(self.time_steps,device=self.time_projection_map.weight.device)====keep for future#
+        nominal_dt =(t[-1]-t[0])/(len(t)-1)
+        t_scaled=(t-t[0])/nominal_dt        
+        arg=t_scaled[:,None]*freqs[None,:]
+        feats=torch.cat([torch.sin(arg), torch.cos(arg)],dim=-1)
+        return feats
+    def forward(self,motion_type=None,update_rule=None):
+        branch_update=self.mlp_branch()
+        branch_encoding=self.branch_encoding()
+        time_projection_lat = self.time_projection_map(branch_encoding)
+        depth_features=torch.zeros(self.depth_dimension,device=self.state_projection.weight.device,dtype=self.state_projection.weight.dtype)
+        time_scale_features=torch.zeros(self.time_scale_dimension,device=self.state_projection.weight.device,dtype=self.state_projection.weight.dtype)
+        scale_features=torch.zeros(self.scale_dimension,device=self.state_projection.weight.device,dtype=self.state_projection.weight.dtype)
+        combined=torch.cat([depth_features,time_scale_features,scale_features],dim=-1)
+        state=self.state_projection(combined)
+        P_d_values_real=[1.0000,1.0000,1.0000]
+        P_d_values_imag=[-1.0000,-1.0000,-1.0000]
+        P_d_real=torch.tensor(P_d_values_real,device = self.P_map.weight.device,dtype=self.P_map.weight.dtype)
+        P_d_imag=torch.tensor(P_d_values_imag,device=self.P_map.weight.device,dtype=self.P_map.weight.dtype)
+        P_lat_real=self.P_map(P_d_real)
+        P_lat_imag=self.P_map(P_d_imag)
+        theta_d_values_real=[1.000, 1.000, 1.000]
+        theta_d_values_imag=[-1.0000,-1.0000,-1.0000]
+        theta_d_real=torch.tensor(theta_d_values_real,device=self.Theta_map_real.weight.device,dtype=self.Theta_map_real.weight.dtype)
+        theta_d_imag=torch.tensor(theta_d_values_imag,device=self.Theta_map_imag.weight.device,dtype=self.Theta_map_imag.weight.dtype)
+        Theta_lat_real=self.Theta_map_real(theta_d_real)
+        Theta_lat_imag=self.Theta_map_imag(theta_d_imag)
+        branch_update=branch_update.unsqueeze(1)
+        branch_update=branch_update.expand(-1, self.time_steps,-1)
+        branch_update=branch_update.view(self.number_branches,self.time_steps,self.state_dimension)
+        V_real_head =self.V_real_head(branch_update)
+        V_imag_head =self.V_imag_head(branch_update)
+        Theta_real_head=self.Theta_real_head(branch_update)
+        Theta_imag_head=self.Theta_imag_head(branch_update)
+        denom_real=Theta_lat_real.unsqueeze(0).unsqueeze(1)+Theta_real_head
+        denom_imag=Theta_lat_imag.unsqueeze(0).unsqueeze(1)+Theta_imag_head
+        progress=torch.linspace(0,1,self.time_steps,device=self.P_map.weight.device,dtype = self.P_map.weight.dtype)
+        eps_effective=(self.epsilon*(1.0-1.0*progress)).view(1,self.time_steps,1)
+        denom_mag2=denom_real**2+denom_imag**2+eps_effective**2
+        num_real=P_lat_real.unsqueeze(0).unsqueeze(1)+V_real_head
+        num_imag=P_lat_imag.unsqueeze(0).unsqueeze(1)+V_imag_head
+        out_real=(num_real*denom_real+num_imag*denom_imag)/denom_mag2
+        out_imag=(num_imag*denom_real-num_real*denom_imag)/denom_mag2
+        alphas=F.softmax(self.branch_logits,dim=0)
+        alphas_exp=alphas.view(self.number_branches,1,1).expand(-1,self.time_steps,self.state_dimension)
+        latent_real=(alphas_exp*out_real).sum(dim=0)
+        latent_imag=(alphas_exp*out_imag).sum(dim=0)
+        branch_variance=((out_real-latent_real.unsqueeze(0))**2*alphas.view(self.number_branches,1,1)).sum(dim=0)
+        branch_variance=branch_variance*self.noise_scale
+        imag_magnitude=latent_imag.abs().mean(dim=1)
+        real_magnitude=latent_real.abs().mean(dim=1)
+        delta=self.delta_readout(latent_real+time_projection_lat)
+        delta_update=torch.ones_like(delta)
+        pos_super=torch.cumsum(delta,dim=0)+latent_real
+        if update_rule=="residual":
+            for layers in self.res_layers:
+                latent_real=latent_real+layers(latent_real)
+                pos_super=latent_real
+        return pos_super,imag_magnitude,real_magnitude,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance
+def train_on_synthetic(model,trajectories,lr=1e-2,epochs=300):
+    optimizer=torch.optim.Adam(model.parameters(),lr=lr)
+    loss_fn=nn.MSELoss()
+    for traj_idx,(t,synthetic_position) in enumerate(trajectories):
+        last_print=time.time()
+        for epoch in range(epochs):
+            optimizer.zero_grad()
+            pos_super,imag_magnitude,real_magnitude,P_lat_real,P_lat_imag,Theta_lat_real,theta_lat_imag,delta_update,time_projection_lat,state,branch_variance=model(motion_type="circular", update_rule = None)
+            loss=loss_fn(pos_super,synthetic_position)
+            loss.backward()
+            optimizer.step()
+            if time.time() - last_print > .3:
+                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]loss={loss.item():.16f}|mean_imag_magnitude={imag_magnitude.mean().item():.4f}|max_imag_magnitude={imag_magnitude.max().item():.4f}")
+                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]min_imag_magnitude={imag_magnitude.min().item():.4f}|imag_magnitude_std={imag_magnitude.std().item():.4f}")
+                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]mean_real_magnitude={real_magnitude.mean().item():.4f}|max_real_magnitude={real_magnitude.max().item():.4f}")
+                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]min_real_magnitude={real_magnitude.min().item():.4f}|real_magnitude_std={real_magnitude.std().item():.4f}")
+                last_print=time.time()
+    detached=[(t.detach().cpu(),synthetic_position.detach().cpu()) for t,synthetic_position in trajectories]
+    return model,detached
+def evaluate_model(model,synthetic_position):
+    with torch.no_grad():
+        pos_super,imag_magnitude,real_magnitude,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance=model(motion_type=None,update_rule=None)
+        loss=F.mse_loss(pos_super,synthetic_position)
+    return pos_super,imag_magnitude,real_magnitude,loss,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance
+def visualize_trajectory(pos_super,imag_magnitude,real_magnitude,synthetic_position,loss= None,title="Synthetic Trajectory Example"):
+    pos_pred=pos_super.detach().cpu().numpy()
+    imag_magnitude=imag_magnitude.detach().cpu().numpy()
+    real_magnitude=real_magnitude.detach().cpu().numpy()
+    mean_imag_magnitude=imag_magnitude.mean()
+    max_imag_magnitude=imag_magnitude.max()
+    mean_real_magnitude=real_magnitude.mean()
+    max_real_magnitude=real_magnitude.max()
+    threshold_imag=mean_imag_magnitude+imag_magnitude.std()
+    outlier_idx=imag_magnitude>threshold_imag
+    fig=plt.figure(figsize=(11,8))
+    ax=fig.add_subplot(111,projection='3d')
+    norm_magnitude=(imag_magnitude-imag_magnitude.min())/(imag_magnitude.max()-imag_magnitude.min()+1e-8)
+    colors=plt.cm.viridis(norm_magnitude)
+    for i in range(len(pos_pred)-1):
+        ax.plot(pos_pred[i:i+2,0],pos_pred[i:i+2,1],pos_pred[i:i+2,2],color=colors[i],linewidth=2,label="predicted path" if i==0 else None)
+    if synthetic_position is not None:
+        print("synthetic_position:",type(synthetic_position),getattr(synthetic_position,"shape",None))
+        gt=synthetic_position.detach().cpu().numpy()
+        ax.plot(gt[:,0],gt[:,1],gt[:,2],color='black',linewidth=1,linestyle='--',label='True Path')
+        print("synthetic_position:",synthetic_position.shape)
+    ax.scatter(gt[outlier_idx,0],gt[outlier_idx,1],gt[outlier_idx,2],color='red',s=40,label='High Magnitude')
+    metrics=f"Mean imag mag:{mean_imag_magnitude:.2f}|Max imag mag:{max_imag_magnitude:.2f}|Mean real mag:{mean_real_magnitude:.2f}|Max real mag:{max_real_magnitude:.2f}"
+    if loss is not None:
+        metrics=f"Loss:{loss:.16f}|"+metrics
+    ax.set_title(f"{title}\n{metrics}")
+    ax.set_xlabel('X');ax.set_ylabel('Y');ax.set_zlabel('Z')
+    ax.legend()
+    ax.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+if __name__=="__main__":
+    torch.manual_seed(50)
+    model=ProbTrajectory5k(state_dimension=3,depth_dimension=15,layers=1)
+    total=sum(p.numel() for p in model.parameters())
+    trainable=sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"Total Parameters:{total:,}")
+    print(f"Trainable Parameters:{trainable:,}")
+    for name, param in model.named_parameters():
+        print(name,tuple(param.shape),param.numel())
+    trajectories=[]
+    for _ in range(15):
+        t,synthetic_position=generate_random_trajectory(num_points=20,motion_type="oscillatory",noise=.1)
+        trajectories.append((t,synthetic_position))
+    train_on_synthetic(model,trajectories,lr= 1e-2,epochs=300)
+    pos_super,imag_magnitude,real_magnitude,loss,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance=evaluate_model(model,synthetic_position)
+    visualize_trajectory(pos_super,imag_magnitude,real_magnitude,synthetic_position,loss=loss.item(),title="Synthetic Trajectory Example")
