@@ -133,7 +133,7 @@ class ProbTrajectory5k(nn.Module):
                 latent_real=latent_real+layers(latent_real)
                 pos_super=latent_real
         return pos_super,imag_magnitude,real_magnitude,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance
-def train_on_synthetic(model,trajectories,lr=1e-2,epochs=300):
+def train_on_synthetic(model,trajectories,lr=1e-2,epochs=125):
     optimizer=torch.optim.Adam(model.parameters(),lr=lr)
     loss_fn=nn.MSELoss()
     for traj_idx,(t,synthetic_position) in enumerate(trajectories):
@@ -149,6 +149,8 @@ def train_on_synthetic(model,trajectories,lr=1e-2,epochs=300):
                 print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]min_imag_magnitude={imag_magnitude.min().item():.4f}|imag_magnitude_std={imag_magnitude.std().item():.4f}")
                 print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]mean_real_magnitude={real_magnitude.mean().item():.4f}|max_real_magnitude={real_magnitude.max().item():.4f}")
                 print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]min_real_magnitude={real_magnitude.min().item():.4f}|real_magnitude_std={real_magnitude.std().item():.4f}")
+                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]branch_variance_min={real_magnitude.min().item():.4f}|branch_variance_std={real_magnitude.std().item():.4f}")
+                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]branch_variance_max={real_magnitude.max().item():.4f}|branch_variance_mean={real_magnitude.mean().item():.4f}")
                 last_print=time.time()
     detached=[(t.detach().cpu(),synthetic_position.detach().cpu()) for t,synthetic_position in trajectories]
     return model,detached
@@ -201,6 +203,6 @@ if __name__=="__main__":
     for _ in range(15):
         t,synthetic_position=generate_random_trajectory(num_points=50,motion_type="oscillatory",noise=.5)
         trajectories.append((t,synthetic_position))
-    train_on_synthetic(model,trajectories,lr= 1e-2,epochs=200)
+    train_on_synthetic(model,trajectories,lr= 1e-2,epochs=125)
     pos_super,imag_magnitude,real_magnitude,loss,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance=evaluate_model(model,synthetic_position)
     visualize_trajectory(pos_super,imag_magnitude,real_magnitude,synthetic_position,loss=loss.item(),title="Synthetic Trajectory Example")
