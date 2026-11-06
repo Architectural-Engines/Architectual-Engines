@@ -43,7 +43,7 @@ class MLPBranch(nn.Module):
         return branch_state
 class ProbTrajectory5k(nn.Module):
     def __init__(self,state_dimension=3,time_scale_dimension=5,hidden_dimension=3,depth_dimension=15,scale_dimension=10,layers=1,
-                 number_branches=55,epsilon=.4,time_feature_dimension=400,time_steps=20,input_dimension=55):
+                 number_branches=55,epsilon=.4,time_feature_dimension=300,time_steps=50,input_dimension=55):
         super().__init__()
         self.time_steps=time_steps
         self.state_dimension=state_dimension
