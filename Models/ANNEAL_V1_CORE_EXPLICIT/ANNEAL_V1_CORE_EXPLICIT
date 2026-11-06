@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-def generate_random_trajectory(num_points=20,duration=150.0,motion_type="oscillatory",noise=0.1):
+def generate_random_trajectory(num_points=20,duration=150.0,motion_type="oscillatory",noise=0.5):
     t = torch.linspace(0.0,duration,steps=num_points)
     if motion_type=='linear':
         x=t*0.05
@@ -43,7 +43,7 @@ class MLPBranch(nn.Module):
         return branch_state
 class ProbTrajectory5k(nn.Module):
     def __init__(self,state_dimension=3,time_scale_dimension=5,hidden_dimension=3,depth_dimension=15,scale_dimension=10,layers=1,
-                 number_branches=55,epsilon=.2,time_feature_dimension=50,time_steps=20,input_dimension=55):
+                 number_branches=55,epsilon=.4,time_feature_dimension=400,time_steps=20,input_dimension=55):
         super().__init__()
         self.time_steps=time_steps
         self.state_dimension=state_dimension
@@ -54,7 +54,7 @@ class ProbTrajectory5k(nn.Module):
         self.number_branches=number_branches
         self.layers=layers
         self.epsilon=epsilon
-        self.noise_scale=.0001
+        self.noise_scale=.5
         self.state_projection=nn.Linear(depth_dimension+time_scale_dimension+scale_dimension,state_dimension,bias=True)
         self.time_projection_map=nn.Linear(time_feature_dimension,state_dimension,bias=False) 
         self.layers_map=nn.Linear(layers,state_dimension,bias=False)
@@ -199,8 +199,8 @@ if __name__=="__main__":
         print(name,tuple(param.shape),param.numel())
     trajectories=[]
     for _ in range(15):
-        t,synthetic_position=generate_random_trajectory(num_points=20,motion_type="oscillatory",noise=.1)
+        t,synthetic_position=generate_random_trajectory(num_points=20,motion_type="oscillatory",noise=.5)
         trajectories.append((t,synthetic_position))
-    train_on_synthetic(model,trajectories,lr= 1e-2,epochs=300)
+    train_on_synthetic(model,trajectories,lr= 1e-2,epochs=200)
     pos_super,imag_magnitude,real_magnitude,loss,P_lat_real,P_lat_imag,Theta_lat_real,Theta_lat_imag,delta_update,time_projection_lat,state,branch_variance=evaluate_model(model,synthetic_position)
     visualize_trajectory(pos_super,imag_magnitude,real_magnitude,synthetic_position,loss=loss.item(),title="Synthetic Trajectory Example")
