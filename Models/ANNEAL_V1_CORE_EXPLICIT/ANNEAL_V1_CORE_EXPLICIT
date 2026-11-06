@@ -122,7 +122,7 @@ class ProbTrajectory5k(nn.Module):
         latent_real=(alphas_exp*out_real).sum(dim=0)
         latent_imag=(alphas_exp*out_imag).sum(dim=0)
         branch_variance=((out_real-latent_real.unsqueeze(0))**2*alphas.view(self.number_branches,1,1)).sum(dim=0)
-        branch_variance=branch_variance*self.noise_scale
+        #branch_variance=branch_variance*self.noise_scale
         imag_magnitude=latent_imag.abs().mean(dim=1)
         real_magnitude=latent_real.abs().mean(dim=1)
         delta=self.delta_readout(latent_real+time_projection_lat)
@@ -145,12 +145,10 @@ def train_on_synthetic(model,trajectories,lr=1e-2,epochs=125):
             loss.backward()
             optimizer.step()
             if time.time() - last_print > .3:
-                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]loss={loss.item():.16f}|mean_imag_magnitude={imag_magnitude.mean().item():.4f}|max_imag_magnitude={imag_magnitude.max().item():.4f}")
-                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]min_imag_magnitude={imag_magnitude.min().item():.4f}|imag_magnitude_std={imag_magnitude.std().item():.4f}")
-                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]mean_real_magnitude={real_magnitude.mean().item():.4f}|max_real_magnitude={real_magnitude.max().item():.4f}")
-                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]min_real_magnitude={real_magnitude.min().item():.4f}|real_magnitude_std={real_magnitude.std().item():.4f}")
-                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]branch_variance_min={real_magnitude.min().item():.4f}|branch_variance_std={real_magnitude.std().item():.4f}")
-                print(f"[Trajectory {traj_idx+1}|Epoch{epoch+1}]branch_variance_max={real_magnitude.max().item():.4f}|branch_variance_mean={real_magnitude.mean().item():.4f}")
+                print(f"[===========Trajectory {traj_idx+1}=====================Epoch{epoch+1}=====================loss={loss.item():.16f}===========]")
+                print(f"min_imag_magnitude={imag_magnitude.min().item():.4f}|max_imag_magnitude={imag_magnitude.max().item():.4f}|mean_imag_magnitude={imag_magnitude.mean().item():.4f}|imag_magnitude_std={imag_magnitude.std().item():.4f}")
+                print(f"min_real_magnitude={real_magnitude.min().item():.4f}|max_real_magnitude={real_magnitude.max().item():.4f}|mean_real_magnitude={real_magnitude.mean().item():.4f}|real_magnitude_std={real_magnitude.std().item():.4f}")
+                print(f"branch_variance_min={branch_variance.min().item():.4f}|branch_variance_max={branch_variance.max().item():.4f}||branch_variance_mean={branch_variance.mean().item():.4f}|branch_variance_std={branch_variance.std().item():.4f}")
                 last_print=time.time()
     detached=[(t.detach().cpu(),synthetic_position.detach().cpu()) for t,synthetic_position in trajectories]
     return model,detached
