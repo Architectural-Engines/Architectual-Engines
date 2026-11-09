@@ -1,3 +1,6 @@
+****EXPERIMENTAL CODE RELEASE-FOR EXAMINATION,TESTING,AND EXPERIMENTATION.****
+**This release s provided as an experimental architecture, not a finished or production-ready system.  Implementations, modifications, and derivative applications have not been independently validated or endorsed.  Users are responsible for evaluating suitability, reliability, and safety before any use beyond experimentaion**
+
 ANNEAL V1
 
 * Active: participates in the current forward/training path.
