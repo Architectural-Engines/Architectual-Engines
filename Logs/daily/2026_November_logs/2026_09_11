@@ -1,0 +1,6 @@
+Daily log:
+Changed how trajectories were formed. Instead of training being based off a static manual seed.  Created as a range of seeds    
+Added held out data sets, called from main
+Beginning Ablation
+
+build time.
